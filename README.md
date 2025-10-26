@@ -1,6 +1,7 @@
 # MVP Description
 
 Link to the website: https://endearing-truffle-d32667.netlify.app/
+Link to the product walkthrough video: https://youtu.be/rsCieIWeR8s
 
 ### Version
 **v1.0.0 - Sprint 1 MVP Release**
