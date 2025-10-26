@@ -1,0 +1,66 @@
+{
+  "cold": {
+    "name": "Cold Constitution",
+    "chineseName": "偏寒",
+    "description": "You tend to feel cold easily and may have lower energy. Your body thrives with warmth and nourishing foods.",
+    "teas": [
+      { "name": "Ginger Tea", "benefit": "Warms the body, aids digestion" },
+      { "name": "Cinnamon Tea", "benefit": "Tonifies energy, improves circulation" },
+      { "name": "Chai Tea", "benefit": "Warming spices support digestive fire" }
+    ],
+    "foods": {
+      "proteins": "Lamb, beef, chicken, salmon, bone broth",
+      "vegetables": "Sweet potato, squash, root vegetables (cooked)",
+      "other": "Warming spices, walnuts, dates"
+    },
+    "avoid": [
+      "Cold/raw foods and salads",
+      "Iced drinks",
+      "Tropical fruits",
+      "Dairy products"
+    ],
+    "principle": "Choose warming, cooked foods over raw and cold items."
+  },
+  "heat": {
+    "name": "Heat Constitution",
+    "chineseName": "偏热",
+    "description": "You tend to feel warm or overheated. Your body prefers cooling, light foods and benefits from calming practices.",
+    "teas": [
+      { "name": "Chrysanthemum Tea", "benefit": "Clears heat, calms the liver" },
+      { "name": "Peppermint Tea", "benefit": "Cooling and refreshing" },
+      { "name": "Chamomile Tea", "benefit": "Calming, reduces inflammation" }
+    ],
+    "foods": {
+      "proteins": "White fish, duck, tofu",
+      "vegetables": "Leafy greens, cucumber, celery",
+      "fruits": "Watermelon, pear, berries"
+    },
+    "avoid": [
+      "Red meat (beef, lamb)",
+      "Warming spices (ginger, chili)",
+      "Fried and greasy foods",
+      "Alcohol and coffee"
+    ],
+    "principle": "Choose light, fresh, cooling foods and avoid heating spices."
+  },
+  "balanced": {
+    "name": "Balanced Constitution",
+    "chineseName": "平和",
+    "description": "You're in harmony! Your body adjusts well to different foods and environments. Focus on maintaining this balance.",
+    "teas": [
+      { "name": "Jasmine Green Tea", "benefit": "Gentle and harmonizing" },
+      { "name": "Oolong Tea", "benefit": "Balanced, aids digestion" },
+      { "name": "White Tea", "benefit": "Subtle and antioxidant-rich" }
+    ],
+    "foods": {
+      "variety": "Enjoy a diverse range of proteins, vegetables, fruits, and whole grains",
+      "approach": "Seasonal eating and moderation in all things"
+    },
+    "avoid": [
+      "Excessive processed foods",
+      "Extreme temperatures in food",
+      "Overconsumption of any single food"
+    ],
+    "principle": "Maintain harmony through variety, seasonal eating, and moderation."
+  }
+}
