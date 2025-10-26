@@ -1,6 +1,7 @@
 # Sprint 1 Planning Meeting Summary
 
 Meeting Information
+
 **Date:** October 15, 2025  
 **Duration:** 2 hours  
 **Attendees:** Huiqin (Scrum master), Shufan (Developer)  
@@ -12,17 +13,17 @@ Team Capacity for Sprint 1
 
 Given that this is the first sprint and the team consists of two members working part-time on this project, we estimated our capacity conservatively:
 
-- **Huiqin:** 12 hours available
+- Huiqin: 12 hours available
   - Survey design and content creation: 5 hours
   - Landing page copy and UX flow: 4 hours
   - Testing and refinement: 3 hours
 
-- **Shufan:** 12 hours available
+- Shufan: 12 hours available
   - Front-end development: 5 hours
   - Back-end integration: 4 hours
   - Deployment and testing: 3 hours
 
-**Total Team Capacity:** 24 hours
+Total Team Capacity: 24 hours
 
 We agreed to keep the sprint scope modest to account for learning curves, potential technical challenges, and the need for iterative feedback between design and development.
 
