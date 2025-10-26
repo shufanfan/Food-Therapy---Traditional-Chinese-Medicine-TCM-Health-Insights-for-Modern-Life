@@ -70,26 +70,117 @@ Since we were still in ideation, these items represent our initial thinking rath
 | Item | Status | Product Owner Feedback |
 |------|--------|------------------------|
 | Survey Question Design | Planning | ⚠️ Needs to be simplified - start with 1-2 questions only |
-| Chinese Translation | Planned | ✅ Good idea, but make it a specific backlog item with sources |
-| Landing Page Content | Planned | ✅ Acceptable for MVP |
+| Deployment | ✅ Acceptable for MVP |
+| Landing Page Content | Planned | ⚠️ Way to generic and broad, need to be more detailed and specific |
 
 ### Backlog Updates Resulting from Review
 
 **Before Review:** 3 broad items  
 **After Review:** Need to break into 10+ specific items
 
-**New/Updated Backlog Items for Sprint 2:**
+**New/Updated Backlog Items for Sprint 1:**
+Item 1: TCM Constitution Translation & Simplification
+Description:
+Research and select 3-5 TCM constitution types suitable for MVP
+Translate traditional TCM constitution descriptions into modern, Western-accessible language
+Define key characteristics and symptoms for each selected constitution type
+Acceptance Criteria:
+ 3-5 constitution types selected with rationale documented
+ Each constitution has clear, jargon-free description in English
+ Key symptoms/characteristics documented for each type
+Effort: 2 points (1 hour)
+Owner: Huiqin
+Item 2: Constitution-to-Recommendations Mapping
+Description:
+Create database/mapping of dietary recommendations for each constitution type
+Match TCM dietary principles to commonly available Western foods and herbal teas
+Include both beneficial and foods-to-avoid for each constitution
+Acceptance Criteria:
+ Each constitution has 3-5 recommended teas/foods
+ Each constitution has 3-5 foods to avoid
+ All items are easily accessible in US markets
+ Data structured in format ready for frontend consumption (JSON or similar)
+Effort: 3 points (1.5 hours)
+Owner: Huiqin
+Item 3: TCM Constitution Assessment Logic
+Description: Build the scoring system that maps 5 survey questions to TCM constitution types. Question design will be based on key differentiating symptoms identified in Item 1. Implement the calculation logic to determine predominant constitution.
+Dependencies:
+Requires Item 1 completion (constitution types and characteristics defined)
+Acceptance Criteria:
+ 5 questions finalized with answer options
+ Scoring algorithm implemented (maps answers → constitution scores)
+ Returns top 1-2 constitution types based on user responses
+ Basic manual testing completed
+Effort: 5 points (2 hours)
+Owner: Shufan (with input from Huiqin on question design)
+Item 4: Landing Page Content
+Description: Write minimal content for landing page including project intro text and survey instructions. Keep design simple and functional.
+Acceptance Criteria:
+ Brief hero text explaining the tool (2-3 sentences)
+ Survey instructions written
+ Results page text template created
+Effort: 2 points (1 hour)
+Owner: Huiqin + Shufan
+Item 5: Survey Frontend Implementation
+Description: Build the interactive survey component with 5 questions, answer selection, and submission flow.
+Dependencies:
+Item 3 (needs questions and answer options)
+Item 4 (needs basic content)
+Acceptance Criteria:
+ Survey component renders all 5 questions
+ Users can select answers and navigate between questions
+ Form validation works (all questions answered before submission)
+ Survey connects to assessment logic and displays results
+ Mobile-responsive (basic)
+Effort: 5 points (3 hours)
+Owner: Shufan
+Item 6: Results Display Component
+Description: Build the component that displays user's TCM constitution results and personalized recommendations.
+Dependencies:
+Item 2 (needs recommendations content)
+Item 3 (needs assessment output)
+Acceptance Criteria:
+ Displays identified constitution type with description
+ Shows recommended teas/foods
+ Shows foods to avoid
+ Readable and functional (minimal styling okay)
+Effort: 3 points (2 hours)
+Owner: Shufan
+Item 7: Basic Page Styling & Integration
+Description: Apply minimal styling to make the page functional and presentable. Integrate all components into single page.
+Dependencies:
+Items 5, 6 (all components built)
+Acceptance Criteria:
+ All components integrated on single page
+ Basic CSS applied (readable, not ugly)
+ Smooth transition between survey → results
+ Works on desktop and mobile (basic responsiveness)
+Effort: 2 points (1 hour)
+Owner: Huiqin
+Item 8: Deployment
+Description: Deploy the landing page to Vercel or Netlify with a public URL.
+Acceptance Criteria:
+ Website deployed to production
+ Public URL accessible
+ HTTPS enabled
+ URL documented in README
+Effort: 1 point (30 minutes)
+Owner: Shufan
+Item 9: Testing & Documentation
+Description: End-to-end manual testing and basic README documentation.
+Dependencies:
+All previous items completed
+Acceptance Criteria:
+ Complete user flow tested on desktop
+ Complete user flow tested on mobile (one device)
+ No blocking bugs
+ README has project description and live URL
+ MVP description documented
+Effort: 2 points (30 minutes)
+Owner: Huiqin + Shufan (edited) 
 
-1. **Simple Trivia Prototype (1-2 Questions)** - Working demo with question → recommendation
-2. **TCM Constitution Research** - Document 3-5 constitution types with explanations
-3. **TCM Source Translation** - Translate 2-3 Chinese TCM resources with citations
-4. **Decision Tree Logic** - Map 1-2 questions to recommendations
-5. **Recommendation Display Design** - Mock-up of results presentation
-6. **Update README** - Make project description more detailed
-7. **Refine Scrum Board** - Break items into specific, trackable tasks
 
 **Moved to Future Sprints:**
-- Full 5-question survey (Sprint 2/3)
 - Adaptive suggestions (Later)
 - Transparency layer (Later)
 - Notification controls (Later)
@@ -97,32 +188,10 @@ Since we were still in ideation, these items represent our initial thinking rath
 
 ## Priority Changes for Next Sprint
 
-**Sprint 2 Focus (Due Sunday):**
-
-1. **Build simple 1-2 question trivia** - Prove the concept works with minimal complexity
-2. **Document TCM knowledge** - Research and translate source materials with citations
-3. **Make backlog more specific** - Break down items into granular, actionable tasks
 
 **Key Insight from Professor:**
 "Focus on delivering the smallest thing that shows value. For a TCM app, the credibility comes from your knowledge base - that's the real product feature."
 
-## Action Items Before Next Sprint
-
-**For Huiqin:**
-- Research 3-5 TCM constitution types  
-- Translate 2-3 key TCM source materials
-- Design 1-2 question trivia format
-- Break backlog into specific items
-
-**For Shufan:**
-- Design simple recommendation display
-- Create decision tree logic
-- Update project board with new items
-- Update README with detailed description
-
-**For Both:**
-- 3 daily standups before Sunday review
-- Focus on TCM knowledge documentation
 
 ## Key Takeaways
 
@@ -131,8 +200,3 @@ Since we were still in ideation, these items represent our initial thinking rath
 3. **Domain knowledge is a product feature** - TCM content needs proper documentation and citations
 4. **Show incremental value** - Each sprint should demonstrate something working
 
-## Next Sprint Review
-
-**Date:** October 27, 2025 (Sunday)  
-**Goal:** Demo working trivia with TCM-backed recommendation  
-**Required:** 1-2 question flow with specific recommendation and source citation
