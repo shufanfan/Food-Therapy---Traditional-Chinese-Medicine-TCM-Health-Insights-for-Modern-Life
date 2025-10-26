@@ -1,0 +1,58 @@
+# Sprint 1 Retrospective Meeting Notes
+
+## Meeting Information
+
+- **Date:** October 26, 2025
+- **Time:** 1:30 PM - 2:15 PM
+- **Duration:** 45 minutes
+- **Location:** Virtual meeting
+- **Attendees:** 
+  - Huiqin Hu (Scrum Master/Designer) - Present ✅
+  - Shufan (Developer) - Present ✅
+
+## Sprint Velocity Analysis
+
+### Planned vs. Actual Completion
+
+**Original Sprint 1 Plan (Before professor feedback):**
+- 3 broad backlog items planned
+- Estimated: ~24 hours of work (Huiqin: 12h, Shufan: 12h)
+
+**What Actually Happened:**
+
+After the Sprint Review with the professor on October 23, we realized our backlog items were too generic and large. The professor's feedback prompted us to:
+1. Refine our 3 broad items into 10+ specific, granular tasks
+2. Treat Sprint 1 as a trial sprint and use the implementation process to get familiarized with the SCRUM process
+
+**Sprint 1 Velocity:**
+- **Story Points Completed: 11 (Maurijn story 1 (5 points), Emma story 3 (3 points), Paul story 1 (3 points)
+- **Items Completed:** all 10 items
+- **Hours Invested:** ~20 hours (documentation, professor meeting, backlog refinement, translation, design, implementation)
+
+
+---
+
+## Three Required Questions
+
+What went well this sprint?
+Completed all 10 planned issues, exceeding initial expectations (initially worried about not finishing basic requirements).
+Efficient teamwork: Clear task assignment (huiqin focused on content/ideation; shufan focused on coding/deployment) and smooth collaboration.
+
+
+What could have been better?
+Familiarity with project management tools/processes: Struggled with GitHub (e.g., relied on main branch initially, slow to adapt to backlog system) and failed to link issues to pull requests (PRs)/commits in real time (all links added retroactively).
+Initial task breakdown: Early backlog items were too large/vague (e.g., "survey design" as a single item estimated at 5–10 hours), causing overwhelm and delayed task initiation.
+
+What will we do differently in Sprint 2?
+More aggressive planning: Move beyond Sprint 1’s conservative scope (only 1 landing page) and add more features (uncompleted items can be pushed to future sprints).
+Proactive tool adherence: Avoid retroactive GitHub updates (link PRs/commits to backlogs in real time) and use sprint-specific branches instead of only the main branch.
+Regular synchronized meetings: Schedule 2 weekly meetings (online/in-person, 2 hours each) to align progress and avoid procrastination.
+
+
+---
+
+## Actionable Improvements for Sprint 2
+
+1. Split large backlog items into small, time-bound subtasks (10 mins – 1.5 hours each) to reduce overwhelm and boost productivity. (assigned to Shufan)
+2. Organize 2 weekly synchronized meetings (2 hours each) to align progress, resolve blockers, and maintain focus.	 (assigned to Huiqin)
+3. Link this retrospective meeting note to the Sprint 2 backlog for traceability.	 (assigned to both team members)
