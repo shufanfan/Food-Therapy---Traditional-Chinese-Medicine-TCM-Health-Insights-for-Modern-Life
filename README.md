@@ -5,6 +5,9 @@ Link to the website: https://endearing-truffle-d32667.netlify.app/
 ### Version
 **v1.0.0 - Sprint 1 MVP Release**
 
+![Screenshot of Landing Page](1.png)
+![Screenshot of Landing Page](2.png)
+![Screenshot of Landing Page](3.png)
 
 
 
