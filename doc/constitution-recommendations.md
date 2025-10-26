@@ -1,7 +1,7 @@
 # TCM Constitution Dietary Recommendations
 * This is the detailed reference file. To see the simplified json file, see data/recommendations-display.json
 
-* 
+
 ## Overview
 This document maps each of the 3 constitution types to specific dietary recommendations, including herbal teas and common foods available in US markets. Recommendations are based on traditional TCM food therapy principles (食疗).
 
