@@ -1,17 +1,142 @@
-During our effort planning meeting, Huiqin and Shufan reviewed the project backlog in detail and discussed how to allocate priorities and estimate effort for the upcoming sprint. We began by revisiting the core user stories defined in the previous session to ensure both alignment and feasibility. The discussion centered around five primary backlog items, each representing a key component of the long-term vision for the AI-assisted health app. The team aimed to identify which features could be realistically delivered within the first iteration and which would require additional research or technical validation.
+# Sprint 1 Planning Meeting Summary
 
-The first backlog item, “Personalized Daily Guidance,” corresponds to Maurijn user story 1, which focuses on AI-assisted recommendations for food, training, and sleep. We classified this as a “Must Have” item due to its central role in demonstrating the app’s core value proposition. However, during the meeting, both Huiqin and Shufan recognized that developing a complete recommendation engine was beyond the scope of the initial sprint. Instead, we decided to represent this function through a simplified prototype that simulates the AI logic by using predefined question flows in a survey format. This adaptation allows us to validate user interest and behavioral patterns before investing in algorithm development.
+Meeting Information
+**Date:** October 15, 2025  
+**Duration:** 2 hours  
+**Attendees:** Huiqin (Scrum master), Shufan (Developer)  
+**Sprint Duration:** October 16 - October 26, 2025 (10 days)
 
-The second backlog item, “Adaptive Lifestyle Suggestions,” derived from user story 2, was categorized as a “Should Have.” Although it contributes to personalization by responding to user habits and body patterns, we agreed that this functionality should be deferred to later sprints. For now, our effort will focus on collecting baseline user data about mood, energy levels, and sleep quality. This approach provides the foundation for future adaptive features while keeping the current workload realistic.
+---
 
-The third backlog item, “Transparency and Explanation Layer,” linked to user story 3, was also marked as a “Should Have.” The feature ensures users understand the reasoning behind AI recommendations, which is crucial for building trust. Huiqin suggested that instead of implementing a full explanation module, we could test this concept by including one or two questions in the survey that explore how much users value transparency and evidence-based reasoning in health advice. This would provide useful insights to inform the design of future features without requiring major development work now.
+Team Capacity for Sprint 1
 
-The fourth backlog item, “Notification and Freedom Control,” was labeled as “Could Have.” It allows users to customize how often they receive reminders or health prompts. Both team members agreed that this feature enhances user autonomy but is not essential for the MVP. Therefore, it was deprioritized for the current sprint, as the focus remains on gathering and validating behavioral data rather than delivering a complete app experience.
+Given that this is the first sprint and the team consists of two members working part-time on this project, we estimated our capacity conservatively:
 
-The fifth backlog item, “Weekly Reflection and Progress Summary,” was also categorized as a “Could Have.” While it supports long-term engagement, we acknowledged that it depends on continuous data tracking, which the current prototype does not yet provide. Thus, it was postponed to a future milestone, potentially when the system is ready to visualize user trends.
+- **Huiqin:** 12 hours available
+  - Survey design and content creation: 5 hours
+  - Landing page copy and UX flow: 4 hours
+  - Testing and refinement: 3 hours
 
-In terms of effort measurement, we estimated each backlog item in terms of time complexity and value contribution. “Personalized Daily Guidance” was assigned the highest effort level, as it requires both content design and front-end implementation. Huiqin will handle the conceptual design of the survey questions and ensure they reflect real user motivations following “The Mom Test” principles, focusing on phrasing that avoids assumptions or leading responses. Shufan will manage the technical setup, including the landing page structure, front-end survey integration, and back-end data handling. The team decided that the sprint’s total capacity should not exceed one week of concentrated work time, with 60% of that effort dedicated to building the user-facing prototype and 40% focused on refining survey logic and testing.
+- **Shufan:** 12 hours available
+  - Front-end development: 5 hours
+  - Back-end integration: 4 hours
+  - Deployment and testing: 3 hours
 
-To measure progress and ensure accountability, we defined a success metric for this sprint: by the end of the cycle, the app’s landing page must be fully functional, publicly accessible, and capable of collecting at least five real user responses. The results will be analyzed to evaluate user engagement, question clarity, and behavioral trends. This data-driven outcome will inform how the next sprint prioritizes algorithm design, feedback visualization, and adaptive recommendation mechanisms.
+**Total Team Capacity:** 24 hours
 
-In conclusion, the effort planning meeting established a clear and realistic roadmap for the MVP phase. By grounding the plan in achievable goals, assigning clear ownership, and connecting each backlog item to the overall product vision, the team created a structured yet flexible foundation for iterative development. Huiqin will lead the qualitative design and content framing, while Shufan will focus on implementation and deployment. The consensus was that the success of this sprint will not be measured by the number of features delivered, but by the quality of insights gathered and the clarity of next steps it enables for future iterations.
+We agreed to keep the sprint scope modest to account for learning curves, potential technical challenges, and the need for iterative feedback between design and development.
+
+---
+
+Rationale for Item Selection
+We prioritized items that would validate our core value proposition with minimal technical investment. Our selection criteria:
+
+Validation first: Can we test user interest before building complex features?
+Foundation building: Does this establish infrastructure for future sprints?
+Achievable scope: Can we deliver something functional in 27 hours?
+
+Selected for Sprint 1:
+Maurijn User Story 1: AI-assisted guidance on food, training, and sleep
+
+Classification: Must Have
+Why selected: This represents our core value proposition across all three personas (Maurijn wants AI guidance, Emma wants integrated recommendations, Paul wants reliable advice). Rather than building a full recommendation engine, we'll create a survey-based prototype that simulates the AI's decision logic.
+Approach: Landing page + multi-step survey collecting behavioral data (sleep patterns, health goals, current routines, decision preferences)
+
+Partial validation of other stories through survey questions:
+
+Maurijn US3 (transparency): 1-2 questions testing interest in seeing reasoning behind recommendations
+Emma US1 (data integration): Question about current tracking tools to inform future development
+Paul US1 (trust/verification): Question about importance of professional endorsements
+
+Deferred to Later Sprints:
+
+Maurijn US2 (adaptive suggestions based on daily patterns) - Requires baseline data we haven't collected yet
+Maurijn US4 (notification controls) - Not essential for MVP validation
+Maurijn US5 (progress summaries) - Depends on continuous tracking infrastructure
+Emma US2 (on-demand anxiety techniques) - Requires content library and instant-access UX
+Emma US3 (5-minute flexible routines) - Needs recommendation algorithm first
+Paul US2 (quick stress-relief tips) - Similar to Emma US2, requires content development
+Paul US3 (supplement logging) - Different feature track, not core to initial validation
+
+
+User Story Breakdown into Tasks
+Maurijn User Story 1 → Sprint 1 Tasks
+Design Tasks (Huiqin):
+
+Draft survey questions following "The Mom Test" principles:
+
+Health goals and current pain points
+Daily patterns (sleep quality, exercise frequency, meal timing)
+Energy fluctuations and stress levels
+Preferences for health guidance style
+
+
+Create landing page copy explaining app value proposition
+Design user flow: landing → survey → completion message
+Test questions with 2-3 people for clarity
+
+Development Tasks (Shufan):
+
+Set up project repository
+Build responsive landing page
+Implement multi-step survey form
+Create back-end data collection endpoint
+Set up database for storing responses
+Deploy to publicly accessible URL
+Add basic analytics (completion tracking)
+
+Acceptance Criteria:
+
+Site works on mobile and desktop
+Survey collects minimum 8 data points per user
+Data successfully stored and retrievable
+Publicly shareable link functional
+Minimum 5 real user responses collected by sprint end
+
+
+Questions and Clarifications from Product Owner
+Q1: How do we measure success if we're not building actual AI recommendations yet?
+A: Success = quality insights, not feature count. We'll evaluate:
+
+Completion rate (target >70%)
+Question clarity based on user feedback
+Data quality and pattern visibility
+Actionable insights for algorithm design in Sprint 2
+
+Q2: Should we test interest in transparency (Maurijn US3) even though we're not building it?
+A: Yes. Include 1-2 questions:
+
+"How important is seeing the reasoning behind health advice?" (1-5 scale)
+"Would you trust AI recommendations more with evidence/sources shown?" (Yes/No/Maybe)
+
+Q3: What if we don't reach 5 responses?
+A: Share via personal networks and relevant communities. If needed, extend collection 2-3 days while analyzing existing data. Quality over quantity—even 3-4 thoughtful responses provide value.
+Q4: Which other user stories can we gather intel on without building features?
+A: Add lightweight questions about:
+
+Current health tracking tools (Emma US1)
+Interest in professional verification (Paul US1)
+Preferred time commitment for health routines (Emma US3, Paul US2)
+
+This gives us directional data for future prioritization.
+
+Sprint Goal
+"Validate user interest in personalized health guidance through a functional survey prototype, collecting behavioral data to inform algorithm development."
+Success looks like:
+
+Live landing page + working survey
+5+ real user responses
+Clear insights on user needs and preferences
+Foundation for Sprint 2 planning
+
+
+Risk Mitigation
+RiskMitigationSurvey questions don't elicit useful dataTest with friends before launchTechnical deployment issuesUse simple hosting solution (Vercel/Netlify)Low response ratePrepare outreach plan to multiple channelsScope creepStrict adherence to 27-hour budget
+
+Next Steps After Sprint 1
+Based on results, Sprint 2 will likely focus on:
+
+Analyzing response patterns and user segments
+Prototyping basic recommendation logic (Maurijn US1 full implementation)
+Determining technical feasibility of data integration (Emma US1)
+Designing content architecture for quick-access features (Emma US2, Paul US2)
