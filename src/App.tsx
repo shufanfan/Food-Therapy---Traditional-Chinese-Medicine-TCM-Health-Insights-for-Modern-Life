@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import LandingPage from "./components/LandingPage";
+import Survey from "./components/Survey";
+import SurveyResults from "./components/SurveyResults";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState<string>("landing");
+
+  const [surveyAnswers, setSurveyAnswers] = useState<string[]>([]);
+
+  const handleStartAssessment = () => {
+    setCurrentPage("survey");
+  };
+
+  const handleSurveyComplete = (answers: string[]) => {
+    setSurveyAnswers(answers);
+    setCurrentPage("results");
+  };
+
+  const handleReturnToLanding = () => {
+    setCurrentPage("landing");
+    setSurveyAnswers([]);
+  };
+
+  const handleRestartAssessment = () => {
+    setSurveyAnswers([]);
+    setCurrentPage("survey");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {currentPage === "landing" && (
+        <LandingPage onStartAssessment={handleStartAssessment} />
+      )}
+
+      {currentPage === "survey" && <Survey onComplete={handleSurveyComplete} />}
+
+      {currentPage === "results" && (
+        <SurveyResults
+          answers={surveyAnswers}
+          onReturnHome={handleReturnToLanding}
+          onRestartAssessment={handleRestartAssessment}
+        />
+      )}
     </div>
   );
 }
