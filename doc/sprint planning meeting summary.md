@@ -48,6 +48,8 @@ Maurijn US3 (transparency): 1-2 questions testing interest in seeing reasoning b
 Emma US1 (data integration): Question about current tracking tools to inform future development
 Paul US1 (trust/verification): Question about importance of professional endorsements
 
+---
+
 Deferred to Later Sprints:
 
 Maurijn US2 (adaptive suggestions based on daily patterns) - Requires baseline data we haven't collected yet
@@ -58,6 +60,7 @@ Emma US3 (5-minute flexible routines) - Needs recommendation algorithm first
 Paul US2 (quick stress-relief tips) - Similar to Emma US2, requires content development
 Paul US3 (supplement logging) - Different feature track, not core to initial validation
 
+---
 
 User Story Breakdown into Tasks
 Maurijn User Story 1 → Sprint 1 Tasks
@@ -93,6 +96,7 @@ Data successfully stored and retrievable
 Publicly shareable link functional
 Minimum 5 real user responses collected by sprint end
 
+---
 
 Questions and Clarifications from Product Owner
 Q1: How do we measure success if we're not building actual AI recommendations yet?
@@ -120,6 +124,8 @@ Preferred time commitment for health routines (Emma US3, Paul US2)
 
 This gives us directional data for future prioritization.
 
+---
+
 Sprint Goal
 "Validate user interest in personalized health guidance through a functional survey prototype, collecting behavioral data to inform algorithm development."
 Success looks like:
@@ -128,15 +134,3 @@ Live landing page + working survey
 5+ real user responses
 Clear insights on user needs and preferences
 Foundation for Sprint 2 planning
-
-
-Risk Mitigation
-RiskMitigationSurvey questions don't elicit useful dataTest with friends before launchTechnical deployment issuesUse simple hosting solution (Vercel/Netlify)Low response ratePrepare outreach plan to multiple channelsScope creepStrict adherence to 27-hour budget
-
-Next Steps After Sprint 1
-Based on results, Sprint 2 will likely focus on:
-
-Analyzing response patterns and user segments
-Prototyping basic recommendation logic (Maurijn US1 full implementation)
-Determining technical feasibility of data integration (Emma US1)
-Designing content architecture for quick-access features (Emma US2, Paul US2)
