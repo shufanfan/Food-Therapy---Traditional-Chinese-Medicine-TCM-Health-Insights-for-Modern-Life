@@ -1,48 +1,51 @@
 import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Survey from "./components/Survey";
 import SurveyResults from "./components/SurveyResults";
 
-function App() {
-  const [currentPage, setCurrentPage] = useState<string>("landing");
-
+function AppContent() {
+  const navigate = useNavigate();
   const [surveyAnswers, setSurveyAnswers] = useState<string[]>([]);
-
-  const handleStartAssessment = () => {
-    setCurrentPage("survey");
-  };
 
   const handleSurveyComplete = (answers: string[]) => {
     setSurveyAnswers(answers);
-    setCurrentPage("results");
   };
 
   const handleReturnToLanding = () => {
-    setCurrentPage("landing");
     setSurveyAnswers([]);
   };
 
   const handleRestartAssessment = () => {
     setSurveyAnswers([]);
-    setCurrentPage("survey");
   };
 
   return (
-    <div>
-      {currentPage === "landing" && (
-        <LandingPage onStartAssessment={handleStartAssessment} />
-      )}
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/assessment"
+        element={<Survey onComplete={handleSurveyComplete} />}
+      />
+      <Route
+        path="/results"
+        element={
+          <SurveyResults
+            answers={surveyAnswers}
+            onReturnHome={handleReturnToLanding}
+            onRestartAssessment={handleRestartAssessment}
+          />
+        }
+      />
+    </Routes>
+  );
+}
 
-      {currentPage === "survey" && <Survey onComplete={handleSurveyComplete} />}
-
-      {currentPage === "results" && (
-        <SurveyResults
-          answers={surveyAnswers}
-          onReturnHome={handleReturnToLanding}
-          onRestartAssessment={handleRestartAssessment}
-        />
-      )}
-    </div>
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

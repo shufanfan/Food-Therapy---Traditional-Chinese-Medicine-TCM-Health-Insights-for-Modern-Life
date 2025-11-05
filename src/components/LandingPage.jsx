@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const LandingPage = ({ onStartAssessment }) => {
+const LandingPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleStartAssessment = () => {
-    onStartAssessment();
+    navigate("/assessment");
   };
 
   const handleEmailSubmit = () => {

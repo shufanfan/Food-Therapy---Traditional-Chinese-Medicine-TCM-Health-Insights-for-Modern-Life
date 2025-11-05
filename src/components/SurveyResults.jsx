@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   calculateConstitution,
   getDetailedScore,
@@ -6,11 +7,22 @@ import {
 import recommendationsData from "../data/recommendations-display.json";
 
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
+  const navigate = useNavigate();
   const constitution = calculateConstitution(answers);
   const detailedScore = getDetailedScore(answers);
   console.log("Score breakdown:", detailedScore);
 
   const recommendations = recommendationsData[constitution];
+
+  const handleReturnHome = () => {
+    onReturnHome();
+    navigate("/");
+  };
+
+  const handleRestartAssessment = () => {
+    onRestartAssessment();
+    navigate("/assessment");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-stone-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -127,7 +139,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={onReturnHome}
+            onClick={handleReturnHome}
             className="flex items-center justify-center bg-white hover:bg-stone-50 text-stone-800 font-semibold px-8 py-4 rounded-lg border-2 border-stone-200 transition-colors duration-200 shadow-sm"
           >
             <svg
@@ -146,7 +158,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
             Return to Home
           </button>
           <button
-            onClick={onRestartAssessment}
+            onClick={handleRestartAssessment}
             className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg"
           >
             Take Assessment Again
