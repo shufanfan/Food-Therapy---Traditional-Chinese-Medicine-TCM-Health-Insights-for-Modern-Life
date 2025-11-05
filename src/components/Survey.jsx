@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Survey questions data
 const QUESTIONS = [
@@ -80,6 +80,12 @@ const QUESTIONS = [
 function Survey({ onComplete }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  // Clear selected option when question changes
+  useEffect(() => {
+    setSelectedOption(null);
+  }, [currentQuestion]);
 
   const handleAnswer = (answer) => {
     const newAnswers = [...answers, answer];
@@ -131,22 +137,39 @@ function Survey({ onComplete }) {
 
           {/* Options */}
           <div className="space-y-4">
-            {question.options.map((option) => (
-              <button
-                key={option.value}
-                onClick={() => handleAnswer(option.value)}
-                className="w-full text-left p-6 border-2 border-stone-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-all duration-200 group focus:outline-none"
-              >
-                <div className="flex items-start">
-                  <span className="flex-shrink-0 w-8 h-8 bg-stone-100 group-hover:bg-emerald-500 rounded-full flex items-center justify-center text-stone-600 group-hover:text-white font-semibold transition-colors duration-200 mr-4">
-                    {option.value}
-                  </span>
-                  <span className="text-stone-700 group-hover:text-stone-900 leading-relaxed">
-                    {option.label}
-                  </span>
-                </div>
-              </button>
-            ))}
+            {question.options.map((option) => {
+              const isSelected = selectedOption === option.value;
+              return (
+                <button
+                  key={option.value}
+                  onClick={() => handleAnswer(option.value)}
+                  className={`w-full text-left p-6 border-2 rounded-xl transition-all duration-200 focus:outline-none ${
+                    isSelected
+                      ? "border-emerald-500 bg-emerald-50"
+                      : "border-stone-200"
+                  }`}
+                >
+                  <div className="flex items-start">
+                    <span
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors duration-200 mr-4 ${
+                        isSelected
+                          ? "bg-emerald-500 text-white"
+                          : "bg-stone-100 text-stone-600"
+                      }`}
+                    >
+                      {option.value}
+                    </span>
+                    <span
+                      className={`leading-relaxed ${
+                        isSelected ? "text-stone-900" : "text-stone-700"
+                      }`}
+                    >
+                      {option.label}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
 
