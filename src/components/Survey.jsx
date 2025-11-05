@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Survey questions data
 const QUESTIONS = [
@@ -78,6 +79,7 @@ const QUESTIONS = [
 ];
 
 function Survey({ onComplete }) {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -95,6 +97,7 @@ function Survey({ onComplete }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       onComplete(newAnswers);
+      navigate("/results");
     }
   };
 
