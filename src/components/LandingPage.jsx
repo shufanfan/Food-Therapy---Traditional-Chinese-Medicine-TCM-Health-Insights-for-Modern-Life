@@ -26,10 +26,12 @@ const LandingPage = () => {
             Discover Your Body's Natural Balance
           </h1>
           <p className="text-lg sm:text-xl text-stone-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            A personalized wellness tool inspired by Traditional Chinese
-            Medicine. Take a quick 5-question assessment to understand your
-            unique constitution and receive food recommendations tailored to
-            your body.
+            A personalized wellness tool inspired by{" "}
+            <span className="font-tcm font-semibold">
+              Traditional Chinese Medicine
+            </span>
+            . Take a quick 5-question assessment to understand your unique
+            constitution and receive food recommendations tailored to your body.
           </p>
           <button
             onClick={handleStartAssessment}
@@ -47,14 +49,16 @@ const LandingPage = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-6 text-center">
-            What is TCM Constitution?
+            What is <span className="font-tcm">TCM Constitution</span>?
           </h2>
           <div className="space-y-4 text-stone-600 leading-relaxed">
             <p>
-              Traditional Chinese Medicine views health as a dynamic balance
-              between opposing forces—warmth and coolness, energy and rest,
-              activity and stillness. Your constitution is your body's natural
-              tendency along this spectrum.
+              <span className="font-tcm font-semibold">
+                Traditional Chinese Medicine
+              </span>{" "}
+              views health as a dynamic balance between opposing forces—warmth
+              and coolness, energy and rest, activity and stillness. Your
+              constitution is your body's natural tendency along this spectrum.
             </p>
             <p>
               Rather than treating symptoms, TCM focuses on prevention: eating
@@ -131,7 +135,7 @@ const LandingPage = () => {
           <div className="grid sm:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-semibold text-stone-900 mb-3">
-                🌿 Rooted in TCM Principles
+                🌿 Rooted in <span className="font-tcm">TCM</span> Principles
               </h3>
               <p className="text-stone-600">
                 Based on the Wang Qi 9-Constitution Framework, the gold standard
@@ -143,9 +147,9 @@ const LandingPage = () => {
                 🌏 Culturally Grounded
               </h3>
               <p className="text-stone-600">
-                Translates TCM concepts into language that resonates with
-                Western wellness vocabulary—no esoteric jargon, just practical
-                insights.
+                Translates <span className="font-tcm">TCM</span> concepts into
+                language that resonates with Western wellness vocabulary—no
+                esoteric jargon, just practical insights.
               </p>
             </div>
             <div>
