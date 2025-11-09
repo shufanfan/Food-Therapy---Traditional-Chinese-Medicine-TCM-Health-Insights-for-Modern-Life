@@ -2,9 +2,9 @@ name: Sprint 2 CI/CD Pipeline
 
 on:
   pull_request:
-    branches: [sprint2]
+    branches: [Sprint2]
   push:
-    branches: [sprint2]
+    branches: [Sprint2]
 
 jobs:
   build-and-test:
