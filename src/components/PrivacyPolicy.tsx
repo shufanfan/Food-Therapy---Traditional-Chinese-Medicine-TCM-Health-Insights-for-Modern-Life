@@ -316,9 +316,11 @@ const PrivacyPolicy = () => {
             </p>
             <div className="bg-stone-50 p-4 rounded">
               <p className="text-stone-600">
-                <strong>Project Contact:</strong> Huiqin Hu & Shufan Fan
+                <strong>Project Contact:</strong> Huiqin Hu(hhu01@wesleyan.edu)
+                & Shufan Chai(helloshufanfan@gmail.com)
                 <br />
-                <strong>Institution:</strong> Wesleyan University
+                <strong>Institution:</strong> Wesleyan University & Northeastern
+                University
                 <br />
                 <strong>Purpose:</strong> Educational project demonstrating
                 AI-assisted wellness guidance
