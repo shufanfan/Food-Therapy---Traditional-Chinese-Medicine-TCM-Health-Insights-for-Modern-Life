@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ContactModal from "./ContactModal";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleStartAssessment = () => {
     navigate("/assessment");
@@ -318,12 +316,12 @@ const LandingPage = () => {
                   </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => setIsContactModalOpen(true)}
-                    className="hover:text-white transition-colors text-left"
+                  <a
+                    href="mailto:helloshufanfan@gmail.com?subject=TCM%20Website%20Inquiry&body=Hello%2C%0D%0A%0D%0AI%20have%20a%20question%20about%20the%20TCM%20Constitution%20tool%3A%0D%0A%0D%0A"
+                    className="hover:text-white transition-colors"
                   >
                     Contact Us
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -336,10 +334,6 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
     </div>
   );
 };
