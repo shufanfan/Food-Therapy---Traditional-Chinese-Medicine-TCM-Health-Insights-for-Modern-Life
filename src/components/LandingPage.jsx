@@ -4,16 +4,44 @@ import { useNavigate } from "react-router-dom";
 const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleStartAssessment = () => {
     navigate("/assessment");
   };
 
-  const handleEmailSubmit = () => {
-    if (email) {
-      //console.log("Email submitted:", email);
+  const handleEmailSubmit = async () => {
+    if (!email) return;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const FORM_ID =
+        "1FAIpQLSdZgTzzwpu3TAoCsFIDgMzCCKHDjqEZ9tw435o3aLMVbUciJw";
+      const ENTRY_ID = "entry.535282616";
+
+      const formData = new FormData();
+      formData.append(ENTRY_ID, email);
+
+      await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+
+      alert("Thank you for subscribing! 🎉");
+      setEmail("");
+    } catch (error) {
       alert("Thank you for subscribing!");
       setEmail("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -248,12 +276,14 @@ const LandingPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              disabled={isSubmitting}
             />
             <button
               onClick={handleEmailSubmit}
+              disabled={isSubmitting}
               className="bg-stone-800 hover:bg-stone-900 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
             >
-              Subscribe
+              {isSubmitting ? "Subscribing..." : "Subscribe"}
             </button>
           </div>
         </div>
