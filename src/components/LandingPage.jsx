@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ContactModal from "./ContactModal";
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleStartAssessment = () => {
     navigate("/assessment");
@@ -316,9 +318,12 @@ const LandingPage = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <button
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="hover:text-white transition-colors text-left"
+                  >
                     Contact Us
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -331,6 +336,10 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </div>
   );
 };
