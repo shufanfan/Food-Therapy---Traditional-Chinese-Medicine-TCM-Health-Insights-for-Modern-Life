@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   const handleEmailSubmit = () => {
     if (email) {
-      console.log("Email submitted:", email);
+      //console.log("Email submitted:", email);
       alert("Thank you for subscribing!");
       setEmail("");
     }
@@ -298,11 +298,13 @@ const LandingPage = () => {
               <h4 className="text-white font-semibold mb-4">Links</h4>
               <ul className="space-y-2">
                 <li>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a href="#" className="hover:text-white transition-colors">
                     About TCM Constitution Theory
                   </a>
                 </li>
                 <li>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a href="#" className="hover:text-white transition-colors">
                     References & Sources
                   </a>
