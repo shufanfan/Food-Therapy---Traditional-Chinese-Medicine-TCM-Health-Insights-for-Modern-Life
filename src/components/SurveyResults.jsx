@@ -1,16 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  calculateConstitution,
-  getDetailedScore,
-} from "../Sprints/Sprint1/utils/constitutionCalculator";
+import { calculateConstitution } from "../Sprints/Sprint1/utils/constitutionCalculator";
 import recommendationsData from "../data/recommendations-display.json";
 
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
   const constitution = calculateConstitution(answers);
-  const detailedScore = getDetailedScore(answers);
-  console.log("Score breakdown:", detailedScore);
 
   const recommendations = recommendationsData[constitution];
 
