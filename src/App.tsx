@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Survey from "./components/Survey";
 import SurveyResults from "./components/SurveyResults";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 function AppContent() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function AppContent() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route
         path="/assessment"
         element={<Survey onComplete={handleSurveyComplete} />}
