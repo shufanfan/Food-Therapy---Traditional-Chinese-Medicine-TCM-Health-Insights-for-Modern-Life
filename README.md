@@ -2,6 +2,7 @@
 
 ### product url: https://tcmfoodthreapy.netlify.app/
 ### test url: https://foodtherapysprint2test.netlify.app/
+### GitHub Projects board: https://github.com/users/shufanfan/projects/2
 
 
 # Burn Chart
