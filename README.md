@@ -83,28 +83,26 @@ Successfully transitioned from development (Sprint2 branch) to production (main 
 
 ## Process Improvement Plan
 
-### Sprint 2 Retrospective Analysis
+### Sprint 1 Retrospective Analysis
 
 **Sprint 1 Performance Metrics:**
-- **Previous Sprint Velocity:** 12 story points completed
-- **Tickets Completed:** 8 out of 12 planned (67% completion rate)
-- **Carry-over Items:** 4 tickets moved to Sprint 2
+- **Previous Sprint Velocity:** 28 story points completed
+- **Tickets Completed:** 14 out of 14 planned (100% completion rate)
+- **Carry-over Items:** 0 tickets moved to Sprint 2
 
 **What Worked Well:**
-- ✅ Team communication through regular meetings (2x per week)
 - ✅ Clear prioritization of infrastructure work
 - ✅ Successful implementation of core features
 - ✅ Good collaboration between team members (Huiqin & Shufan)
 
 **What Didn't Work:**
-- ❌ Initial ticket estimates were too optimistic
-- ❌ Underestimated complexity of CI/CD setup
-- ❌ Branch protection issues caused delays
+- ❌ Team communication was not enough
+- ❌ Branch assignment was unclear
 - ❌ Some tickets lacked detailed acceptance criteria
 - ❌ Learning curve for new tools (GitHub Actions, ESLint) not factored in
 
 **Key Learnings:**
-- Infrastructure tasks take longer than anticipated
+- TCM research took longer than expected
 - Need buffer time for troubleshooting and learning
 - Importance of clear acceptance criteria
 - Value of incremental progress over perfect completion
