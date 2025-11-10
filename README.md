@@ -61,7 +61,7 @@ Successfully transitioned from development (Sprint2 branch) to production (main 
 - ✅ Enhanced user engagement features
 - ✅ Improved code quality standards
 
-
+**Live Production URL:** https://foodtherapysprint2test.netlify.app
 
 ---
 
@@ -75,6 +75,120 @@ Successfully transitioned from development (Sprint2 branch) to production (main 
 
 ---
 
+## Process Improvement Plan
+
+### Sprint 2 Retrospective Analysis
+
+**Sprint 1 Performance Metrics:**
+- **Previous Sprint Velocity:** 12 story points completed
+- **Tickets Completed:** 8 out of 12 planned (67% completion rate)
+- **Carry-over Items:** 4 tickets moved to Sprint 2
+
+**What Worked Well:**
+- ✅ Team communication through regular meetings (2x per week)
+- ✅ Clear prioritization of infrastructure work
+- ✅ Successful implementation of core features
+- ✅ Good collaboration between team members (Huiqin & Shufan)
+
+**What Didn't Work:**
+- ❌ Initial ticket estimates were too optimistic
+- ❌ Underestimated complexity of CI/CD setup
+- ❌ Branch protection issues caused delays
+- ❌ Some tickets lacked detailed acceptance criteria
+- ❌ Learning curve for new tools (GitHub Actions, ESLint) not factored in
+
+**Key Learnings:**
+- Infrastructure tasks take longer than anticipated
+- Need buffer time for troubleshooting and learning
+- Importance of clear acceptance criteria
+- Value of incremental progress over perfect completion
+
+---
+
+### Ticket Quality Improvements
+
+**1. Improved Ticket Granularity**
+- **Current Issue:** Some tickets (e.g., CI/CD setup) were too large (5+ story points)
+- **Action:** Break down tickets >3 story points into smaller sub-tasks
+- **Owner:** Shufan
+- **Implementation:** Starting Sprint 3
+
+**2. Enhanced Acceptance Criteria Format**
+- **Current Issue:** Acceptance criteria often too vague
+- **New Format:**
+```
+  Given [context]
+  When [action]
+  Then [expected outcome]
+  
+  Technical Requirements:
+  - [ ] Specific requirement 1
+  - [ ] Specific requirement 2
+  
+  Definition of Done:
+  - [ ] Code reviewed
+  - [ ] Tests passing
+  - [ ] Documentation updated
+```
+- **Owner:** Huiqin
+- **Implementation:** Immediate (Sprint 3 onward)
+
+**3. Better Estimation Practices**
+- **Action Items:**
+  - Use Planning Poker for estimation
+  - Include "complexity buffer" for new technologies (+1-2 points)
+  - Track actual vs. estimated time for each ticket
+  - Review estimates in retrospective
+- **Owner:** Both team members
+- **Implementation:** Starting Sprint 3 planning
+
+**4. Specific Actions with Owners**
+
+| Action | Owner | Timeline | Status |
+|--------|-------|----------|--------|
+| Create ticket template with acceptance criteria | Huiqin | Week 1, Sprint 3 | 🔄 Planned |
+| Break down large tickets before sprint starts | Shufan | Before each sprint | 🔄 Planned |
+| Add "learning time" estimates for new tech | Both | Sprint 3 planning | 🔄 Planned |
+| Document estimation guidelines | Shufan | Week 1, Sprint 3 | 🔄 Planned |
+| Create definition of done checklist | Huiqin | Week 1, Sprint 3 | 🔄 Planned |
+
+---
+
+### Sprint 2 Capacity Planning
+
+**Realistic Commitment Based on Sprint 1 Velocity:**
+- **Sprint 1 Completed:** 12 story points (8 tickets)
+- **Average per Ticket:** 1.5 story points
+- **Sprint 2 Target:** 10 story points (more realistic, accounting for CI/CD complexity)
+- **Actual Sprint 2 Completion:** 10 story points (7 tickets) ✅
+
+**Team Availability:**
+- **Huiqin:**
+  - Available: 10 hours/week
+  - Focus areas: UX improvements, documentation, testing
+  - Capacity: ~5 story points/sprint
+  
+- **Shufan:**
+  - Available: 12 hours/week
+  - Focus areas: CI/CD, code quality, infrastructure
+  - Capacity: ~5 story points/sprint
+
+**Total Team Capacity:** ~10 story points/sprint (realistic target)
+
+**Buffer for New Practices:**
+- **Testing Setup:** 2-3 hours (added to CI/CD ticket)
+- **Code Review Process:** 1 hour/week (included in ticket estimates)
+- **Documentation:** 0.5 hours/ticket (added to each estimate)
+- **Learning Time:** 2 hours/sprint for new tools/technologies
+
+**Sprint 3 Planning Adjustments:**
+- Reduce initial commitment to 8-10 story points
+- Add explicit "tech debt" ticket (1-2 points)
+- Include time for documentation in each ticket
+- Schedule mid-sprint check-in to adjust if needed
+
+---
+
 ## Related Issues
 
 - Closes #32 - Set up CI/CD on GitHub using GitHub Actions
@@ -83,3 +197,28 @@ Successfully transitioned from development (Sprint2 branch) to production (main 
 - Closes #35 - Update the privacy policy
 - Closes #36 - Implement meaningful URL structure
 - Closes #40 - Remove hover auto-highlight on survey options
+
+---
+
+## Next Steps for Sprint 3
+
+1. **Apply Process Improvements:**
+   - Implement new ticket template
+   - Use updated estimation practices
+   - Commit to realistic story point target (8-10 points)
+
+2. **Technical Priorities:**
+   - Address any remaining tech debt from Sprint 2
+   - Continue feature development
+   - Maintain code quality standards
+
+3. **Team Development:**
+   - Continue 2x weekly meetings
+   - Mid-sprint checkpoint
+   - Improved documentation practices
+
+---
+
+**Sprint 2 Status:** ✅ **COMPLETE**  
+**Date Completed:** [Add date]  
+**Ready for Production:** ✅ YES
