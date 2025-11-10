@@ -8,7 +8,8 @@
 <img width="482" height="504" alt="Screenshot 2025-11-09 at 22 12 50" src="https://github.com/user-attachments/assets/ec982320-9428-4261-a8af-2d3de559a2a9" />
 
 # Testing framework
-Jest
+### Jest
+<b>Note: This project uses Create React App's built-in Jest configuration, which requires no separate jest.config.js file - all testing setup is handled automatically by react-scripts with custom extensions in src/setupTests.ts.</b>
 
 # Sprint 2 Goal
 
