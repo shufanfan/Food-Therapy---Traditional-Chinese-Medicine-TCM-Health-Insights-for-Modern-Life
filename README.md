@@ -1,6 +1,8 @@
 # Sprint 2
 
-test url: https://foodtherapysprint2test.netlify.app/
+### product url: https://tcmfoodthreapy.netlify.app/
+### test url: https://foodtherapysprint2test.netlify.app/
+
 
 # Burn Chart
 <img width="482" height="504" alt="Screenshot 2025-11-09 at 22 12 50" src="https://github.com/user-attachments/assets/ec982320-9428-4261-a8af-2d3de559a2a9" />
