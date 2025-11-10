@@ -2,9 +2,9 @@ name: Sprint 2 CI/CD Pipeline
 
 on:
   pull_request:
-    branches: [Sprint2]
+    branches: [main]
   push:
-    branches: [Sprint2]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -45,7 +45,7 @@ jobs:
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/sprint2' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
       - name: Checkout code
@@ -69,7 +69,7 @@ jobs:
           publish-dir: "./build"
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions - Sprint 2"
+          deploy-message: "Deploy from GitHub Actions - main branch"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
