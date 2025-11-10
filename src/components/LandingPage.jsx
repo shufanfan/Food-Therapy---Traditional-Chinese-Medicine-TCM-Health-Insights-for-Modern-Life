@@ -337,10 +337,12 @@ const LandingPage = () => {
                   </Link>
                 </li>
                 <li>
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a href="#" className="hover:text-white transition-colors">
+                  <Link
+                    to="/references"
+                    className="hover:text-white transition-colors"
+                  >
                     References & Sources
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link
