@@ -10,6 +10,12 @@
 # Testing framework
 ### Jest
 <b>Note: This project uses Create React App's built-in Jest configuration, which requires no separate jest.config.js file - all testing setup is handled automatically by react-scripts with custom extensions in src/setupTests.ts.</b>
+<img width="1188" height="270" alt="Screenshot 2025-11-10 at 13 46 59" src="https://github.com/user-attachments/assets/1527806c-4639-470c-82b7-38cb9f3333ed" />
+
+
+# CI Pipeline
+<img width="1451" height="680" alt="Screenshot 2025-11-10 at 14 02 44" src="https://github.com/user-attachments/assets/29347dd4-0710-4ee0-b99e-fa62a29919cc" />
+
 
 # Sprint 2 Goal
 
