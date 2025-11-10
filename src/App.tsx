@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage";
 import Survey from "./components/Survey";
 import SurveyResults from "./components/SurveyResults";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import AboutTCM from "./components/AboutTCM";
 
 function AppContent() {
   const [surveyAnswers, setSurveyAnswers] = useState<string[]>([]);
@@ -25,6 +26,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/about-tcm" element={<AboutTCM />} />
       <Route
         path="/assessment"
         element={<Survey onComplete={handleSurveyComplete} />}
