@@ -2,6 +2,10 @@
 
 test url: https://foodtherapysprint2test.netlify.app/
 
+# Burn Chart
+<img width="482" height="504" alt="Screenshot 2025-11-09 at 22 12 50" src="https://github.com/user-attachments/assets/ec982320-9428-4261-a8af-2d3de559a2a9" />
+
+
 # Sprint 2 Goal
 
 ## Goal Statement
@@ -157,23 +161,22 @@ Successfully transitioned from development (Sprint2 branch) to production (main 
 ### Sprint 2 Capacity Planning
 
 **Realistic Commitment Based on Sprint 1 Velocity:**
-- **Sprint 1 Completed:** 12 story points (8 tickets)
-- **Average per Ticket:** 1.5 story points
-- **Sprint 2 Target:** 10 story points (more realistic, accounting for CI/CD complexity)
-- **Actual Sprint 2 Completion:** 10 story points (7 tickets) ✅
+- **Sprint 1 Completed:** 28 story points (14 tickets)
+- **Sprint 2 Target:** 20 story points (more realistic, accounting for CI/CD complexity)
+- **Actual Sprint 2 Completion:** 13 story points (9 tickets) ✅
 
 **Team Availability:**
 - **Huiqin:**
   - Available: 10 hours/week
   - Focus areas: UX improvements, documentation, testing
-  - Capacity: ~5 story points/sprint
+  - Capacity: ~7 story points/sprint
   
 - **Shufan:**
   - Available: 12 hours/week
   - Focus areas: CI/CD, code quality, infrastructure
-  - Capacity: ~5 story points/sprint
+  - Capacity: ~7 story points/sprint
 
-**Total Team Capacity:** ~10 story points/sprint (realistic target)
+**Total Team Capacity:** ~13 story points/sprint (realistic target)
 
 **Buffer for New Practices:**
 - **Testing Setup:** 2-3 hours (added to CI/CD ticket)
