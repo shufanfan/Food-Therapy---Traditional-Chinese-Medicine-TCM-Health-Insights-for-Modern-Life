@@ -343,12 +343,12 @@ const LandingPage = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/privacy"
+                  <Link
+                    to="/privacy"
                     className="hover:text-white transition-colors"
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
