@@ -363,7 +363,26 @@ const LandingPage = () => {
               </ul>
             </div>
             <div className="text-center md:text-right">
-              <p className="mb-2">Developed by Huiqin & Shufan</p>
+              <p className="mb-2">
+                Developed by{" "}
+                <a
+                  href="https://github.com/huiqinhu5500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" hover:text-white transition-colors"
+                >
+                  Huiqin
+                </a>{" "}
+                &{" "}
+                <a
+                  href="https://www.linkedin.com/in/shufanfan/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Shufan
+                </a>
+              </p>
               <p className="text-stone-400 text-sm">
                 © 2025 Food Therapy TCM Project
               </p>
