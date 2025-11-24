@@ -67,7 +67,7 @@ const SCORING_MATRIX = {
 function calculateConstitution(answers) {
   // Validate input
   if (!Array.isArray(answers) || answers.length !== 5) {
-    throw new Error("Expected an array of 5 answers");
+    throw new Error('Expected an array of 5 answers');
   }
 
   // Initialize score counters
@@ -83,7 +83,7 @@ function calculateConstitution(answers) {
     const normalizedAnswer = answer.toUpperCase();
 
     // Validate answer format
-    if (!["A", "B", "C"].includes(normalizedAnswer)) {
+    if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
       throw new Error(
         `Invalid answer "${answer}" at question ${
           questionIndex + 1
@@ -111,17 +111,17 @@ function calculateConstitution(answers) {
   // Handle ties
   if (topConstitutions.length > 1) {
     // If balanced is among the tied constitutions, return balanced
-    if (topConstitutions.includes("balanced")) {
-      return "balanced";
+    if (topConstitutions.includes('balanced')) {
+      return 'balanced';
     }
 
     // If cold and heat tie (without balanced), return balanced
     // This indicates the body is fluctuating between extremes
     if (
-      topConstitutions.includes("cold") &&
-      topConstitutions.includes("heat")
+      topConstitutions.includes('cold') &&
+      topConstitutions.includes('heat')
     ) {
-      return "balanced";
+      return 'balanced';
     }
   }
 
@@ -142,7 +142,7 @@ function calculateConstitution(answers) {
 function getDetailedScore(answers) {
   // Validate input
   if (!Array.isArray(answers) || answers.length !== 5) {
-    throw new Error("Expected an array of 5 answers");
+    throw new Error('Expected an array of 5 answers');
   }
 
   const scores = {
@@ -155,7 +155,7 @@ function getDetailedScore(answers) {
   answers.forEach((answer, questionIndex) => {
     const normalizedAnswer = answer.toUpperCase();
 
-    if (!["A", "B", "C"].includes(normalizedAnswer)) {
+    if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
       throw new Error(
         `Invalid answer "${answer}" at question ${questionIndex + 1}`
       );

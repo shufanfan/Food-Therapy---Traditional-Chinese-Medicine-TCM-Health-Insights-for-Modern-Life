@@ -1,78 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Survey questions data
 const QUESTIONS = [
   {
     id: 0,
-    text: "How do you typically feel in terms of body temperature?",
+    text: 'How do you typically feel in terms of body temperature?',
     options: [
-      { value: "A", label: "I'm often cold, even when others are comfortable" },
-      { value: "B", label: "I'm usually comfortable in most temperatures" },
-      { value: "C", label: "I often feel warm or overheated" },
+      { value: 'A', label: "I'm often cold, even when others are comfortable" },
+      { value: 'B', label: "I'm usually comfortable in most temperatures" },
+      { value: 'C', label: 'I often feel warm or overheated' },
     ],
   },
   {
     id: 1,
-    text: "How would you describe your energy throughout the day?",
+    text: 'How would you describe your energy throughout the day?',
     options: [
-      { value: "A", label: "I often feel tired or have low energy" },
-      { value: "B", label: "I have steady, consistent energy" },
+      { value: 'A', label: 'I often feel tired or have low energy' },
+      { value: 'B', label: 'I have steady, consistent energy' },
       {
-        value: "C",
-        label: "I feel restless, anxious, or have fluctuating energy",
+        value: 'C',
+        label: 'I feel restless, anxious, or have fluctuating energy',
       },
     ],
   },
   {
     id: 2,
-    text: "Which best describes your digestion and related symptoms?",
+    text: 'Which best describes your digestion and related symptoms?',
     options: [
       {
-        value: "A",
+        value: 'A',
         label:
-          "I experience bloating, loose stools, or feel worse after eating cold foods",
+          'I experience bloating, loose stools, or feel worse after eating cold foods',
       },
-      { value: "B", label: "My digestion is generally smooth and comfortable" },
+      { value: 'B', label: 'My digestion is generally smooth and comfortable' },
       {
-        value: "C",
+        value: 'C',
         label:
-          "I have oily skin/acne, constipation, or feel heavy and sluggish after meals",
+          'I have oily skin/acne, constipation, or feel heavy and sluggish after meals',
       },
     ],
   },
   {
     id: 3,
-    text: "How do you sleep at night?",
+    text: 'How do you sleep at night?',
     options: [
       {
-        value: "A",
+        value: 'A',
         label:
-          "I sleep okay but wake up tired, or I need many blankets to feel comfortable",
+          'I sleep okay but wake up tired, or I need many blankets to feel comfortable',
       },
       {
-        value: "B",
-        label: "I fall asleep easily and wake up feeling refreshed",
+        value: 'B',
+        label: 'I fall asleep easily and wake up feeling refreshed',
       },
       {
-        value: "C",
+        value: 'C',
         label:
-          "I have trouble falling asleep, experience night sweats, or feel hot at night",
+          'I have trouble falling asleep, experience night sweats, or feel hot at night',
       },
     ],
   },
   {
     id: 4,
-    text: "What types of foods and drinks do you naturally crave or prefer?",
+    text: 'What types of foods and drinks do you naturally crave or prefer?',
     options: [
-      { value: "A", label: "Warm foods, hot drinks, soups, and cooked meals" },
+      { value: 'A', label: 'Warm foods, hot drinks, soups, and cooked meals' },
       {
-        value: "B",
-        label: "A balanced variety - I enjoy both warm and cool foods",
+        value: 'B',
+        label: 'A balanced variety - I enjoy both warm and cool foods',
       },
       {
-        value: "C",
-        label: "Cold drinks, raw foods, salads, and refreshing snacks",
+        value: 'C',
+        label: 'Cold drinks, raw foods, salads, and refreshing snacks',
       },
     ],
   },
@@ -97,7 +97,7 @@ function Survey({ onComplete }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       onComplete(newAnswers);
-      navigate("/results");
+      navigate('/results');
     }
   };
 
@@ -148,23 +148,23 @@ function Survey({ onComplete }) {
                   onClick={() => handleAnswer(option.value)}
                   className={`w-full text-left p-6 border-2 rounded-xl transition-all duration-200 focus:outline-none ${
                     isSelected
-                      ? "border-emerald-500 bg-emerald-50"
-                      : "border-stone-200"
+                      ? 'border-emerald-500 bg-emerald-50'
+                      : 'border-stone-200'
                   }`}
                 >
                   <div className="flex items-start">
                     <span
                       className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors duration-200 mr-4 ${
                         isSelected
-                          ? "bg-emerald-500 text-white"
-                          : "bg-stone-100 text-stone-600"
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-stone-100 text-stone-600'
                       }`}
                     >
                       {option.value}
                     </span>
                     <span
                       className={`leading-relaxed ${
-                        isSelected ? "text-stone-900" : "text-stone-700"
+                        isSelected ? 'text-stone-900' : 'text-stone-700'
                       }`}
                     >
                       {option.label}
