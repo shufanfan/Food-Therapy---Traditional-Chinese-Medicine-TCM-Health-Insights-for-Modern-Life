@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ReferencesPage = () => {
   return (
@@ -18,7 +18,7 @@ const ReferencesPage = () => {
         </h1>
 
         <p className="text-stone-600 text-lg mb-8">
-          Academic and professional sources supporting our{" "}
+          Academic and professional sources supporting our{' '}
           <span className="font-tcm">TCM</span> constitution assessment tool
         </p>
 
@@ -48,7 +48,7 @@ const ReferencesPage = () => {
                   Wang Qi (王琦)
                 </p>
                 <p className="text-stone-700 text-sm mb-2">
-                  <em>Traditional Chinese Medicine Constitution Theory</em>{" "}
+                  <em>Traditional Chinese Medicine Constitution Theory</em>{' '}
                   (《中医体质学》)
                 </p>
                 <p className="text-stone-600 text-sm">
@@ -94,7 +94,7 @@ const ReferencesPage = () => {
                 <p className="text-stone-700 text-sm mb-2">
                   <em>
                     The Foundations of Chinese Medicine: A Comprehensive Text
-                  </em>{" "}
+                  </em>{' '}
                   (3rd Edition)
                 </p>
                 <p className="text-stone-600 text-sm">
@@ -177,7 +177,7 @@ const ReferencesPage = () => {
                   <em>
                     Healing with Whole Foods: Asian Traditions and Modern
                     Nutrition
-                  </em>{" "}
+                  </em>{' '}
                   (3rd Edition)
                 </p>
                 <p className="text-stone-600 text-sm">

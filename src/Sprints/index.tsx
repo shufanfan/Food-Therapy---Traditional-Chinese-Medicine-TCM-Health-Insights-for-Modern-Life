@@ -1,4 +1,4 @@
-import Sprint1 from "./Sprint1";
+import Sprint1 from './Sprint1';
 export default function Sprints() {
   return (
     <div id="wd-labs">

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PrivacyPolicy = () => {
   return (
@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
               <strong>
                 We do not collect, store, or have access to any of your health
                 information.
-              </strong>{" "}
+              </strong>{' '}
               All assessment processing happens entirely in your browser.
               Nothing is ever sent to our servers.
             </p>
@@ -53,7 +53,7 @@ const PrivacyPolicy = () => {
             <p className="text-stone-600 leading-relaxed mt-4">
               <strong>
                 These are intimate details about your body and health.
-              </strong>{" "}
+              </strong>{' '}
               We take your privacy seriously, which is why we designed this tool
               to protect your information by default—by never collecting it in
               the first place.
@@ -72,7 +72,7 @@ const PrivacyPolicy = () => {
                 </h3>
                 <p className="text-stone-600 leading-relaxed">
                   When you answer the assessment questions and click submit, all
-                  calculations happen{" "}
+                  calculations happen{' '}
                   <strong>directly in your web browser</strong> using
                   JavaScript. Your responses never leave your device.
                 </p>
@@ -174,7 +174,7 @@ const PrivacyPolicy = () => {
             </h2>
             <p className="text-stone-600 leading-relaxed mb-3">
               If you choose to subscribe to project updates using the email
-              signup form on our homepage, we will collect{" "}
+              signup form on our homepage, we will collect{' '}
               <strong>only your email address</strong>.
             </p>
             <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
@@ -205,7 +205,7 @@ const PrivacyPolicy = () => {
               <li className="text-stone-600">
                 <strong>Google Fonts:</strong> We use Google Fonts to display
                 culturally appropriate typography. Google may collect basic
-                technical information about font requests. See{" "}
+                technical information about font requests. See{' '}
                 <a
                   href="https://developers.google.com/fonts/faq/privacy"
                   target="_blank"
@@ -283,7 +283,7 @@ const PrivacyPolicy = () => {
             </h2>
             <p className="text-stone-600 leading-relaxed">
               This tool provides educational wellness guidance based on
-              Traditional Chinese Medicine principles.{" "}
+              Traditional Chinese Medicine principles.{' '}
               <strong>It is not a medical diagnostic tool</strong> and should
               not be used as a substitute for professional medical advice,
               diagnosis, or treatment. For health concerns or comprehensive TCM

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AboutTCM = () => {
   return (
@@ -29,7 +29,7 @@ const AboutTCM = () => {
               What is <span className="font-tcm">TCM</span> Constitution?
             </h2>
             <p className="text-stone-600 leading-relaxed mb-4">
-              In Traditional Chinese Medicine, your{" "}
+              In Traditional Chinese Medicine, your{' '}
               <strong>constitution (体质, tǐzhì)</strong> refers to your body's
               inherent tendencies, strengths, and vulnerabilities. It's the
               foundation of how your body responds to food, weather, stress, and
@@ -37,7 +37,7 @@ const AboutTCM = () => {
             </p>
             <p className="text-stone-600 leading-relaxed">
               Unlike Western medicine's focus on treating disease after it
-              appears, TCM constitution theory emphasizes{" "}
+              appears, TCM constitution theory emphasizes{' '}
               <strong>prevention</strong>—understanding your body's natural
               patterns so you can make choices that maintain balance before
               imbalance occurs.
@@ -51,9 +51,9 @@ const AboutTCM = () => {
             </h2>
             <p className="text-stone-600 leading-relaxed mb-4">
               The most widely recognized system for TCM body constitution
-              classification was developed by Professor <strong>Wang Qi</strong>{" "}
+              classification was developed by Professor <strong>Wang Qi</strong>{' '}
               (王琦) at Beijing University of Chinese Medicine. His research,
-              spanning over 30 years, identified{" "}
+              spanning over 30 years, identified{' '}
               <strong>nine distinct constitution types</strong>
               that form the basis of modern TCM preventive medicine.
             </p>
@@ -190,7 +190,7 @@ const AboutTCM = () => {
             </h2>
             <p className="text-stone-600 leading-relaxed mb-4">
               While the full Wang Qi framework includes nine types, our
-              assessment tool uses a<strong> simplified 3-type system</strong>{" "}
+              assessment tool uses a<strong> simplified 3-type system</strong>{' '}
               for the following reasons:
             </p>
 
@@ -222,7 +222,7 @@ const AboutTCM = () => {
                     Core Energetic Spectrum
                   </h4>
                   <p className="text-stone-600 text-sm">
-                    TCM fundamentally views health along a{" "}
+                    TCM fundamentally views health along a{' '}
                     <strong>Cold-Heat spectrum</strong>. Our 3 types (Cold,
                     Heat, Balanced) represent the essential patterns, with the
                     other 6 Wang Qi types being variations or combinations of
@@ -257,7 +257,7 @@ const AboutTCM = () => {
                     Educational Purpose
                   </h4>
                   <p className="text-stone-600 text-sm">
-                    This tool serves as an{" "}
+                    This tool serves as an{' '}
                     <strong>introduction to TCM thinking</strong> for Western
                     audiences. Starting with 3 clear types helps users
                     understand the fundamental concept of constitutional
@@ -380,8 +380,8 @@ const AboutTCM = () => {
               <div>
                 <p className="font-semibold text-stone-900">Primary Source:</p>
                 <p className="text-stone-600">
-                  Wang, Q. (2005).{" "}
-                  <em>Traditional Chinese Medicine Constitution Theory</em>{" "}
+                  Wang, Q. (2005).{' '}
+                  <em>Traditional Chinese Medicine Constitution Theory</em>{' '}
                   (《中医体质学》). Beijing: People's Medical Publishing House.
                 </p>
               </div>
@@ -391,8 +391,8 @@ const AboutTCM = () => {
                   Official Standard:
                 </p>
                 <p className="text-stone-600">
-                  China Association of Chinese Medicine (2009).{" "}
-                  <em>Classification and Determination of TCM Constitution</em>{" "}
+                  China Association of Chinese Medicine (2009).{' '}
+                  <em>Classification and Determination of TCM Constitution</em>{' '}
                   (中医体质分类与判定标准 ZYYXH/T157-2009).
                 </p>
               </div>
@@ -403,13 +403,13 @@ const AboutTCM = () => {
                 </p>
                 <ul className="text-stone-600 space-y-2 ml-4">
                   <li>
-                    • Maciocia, G. (2015).{" "}
+                    • Maciocia, G. (2015).{' '}
                     <em>The Foundations of Chinese Medicine</em> (3rd ed.).
                     Churchill Livingstone. [Comprehensive TCM textbook widely
                     used in Western education]
                   </li>
                   <li>
-                    • Kaptchuk, T. (2000).{" "}
+                    • Kaptchuk, T. (2000).{' '}
                     <em>
                       The Web That Has No Weaver: Understanding Chinese Medicine
                     </em>

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import Survey from "./components/Survey";
-import SurveyResults from "./components/SurveyResults";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import AboutTCM from "./components/AboutTCM";
-import ReferencesPage from "./components/ReferencesPage";
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import Survey from './components/Survey';
+import SurveyResults from './components/SurveyResults';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import AboutTCM from './components/AboutTCM';
+import ReferencesPage from './components/ReferencesPage';
 
 function AppContent() {
   const [surveyAnswers, setSurveyAnswers] = useState<string[]>([]);

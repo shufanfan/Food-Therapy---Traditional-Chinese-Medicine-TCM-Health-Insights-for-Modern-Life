@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { calculateConstitution } from "../Sprints/Sprint1/utils/constitutionCalculator";
-import recommendationsData from "../data/recommendations-display.json";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { calculateConstitution } from '../Sprints/Sprint1/utils/constitutionCalculator';
+import recommendationsData from '../data/recommendations-display.json';
 
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
@@ -11,12 +11,12 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
 
   const handleReturnHome = () => {
     onReturnHome();
-    navigate("/");
+    navigate('/');
   };
 
   const handleRestartAssessment = () => {
     onRestartAssessment();
-    navigate("/assessment");
+    navigate('/assessment');
   };
 
   return (

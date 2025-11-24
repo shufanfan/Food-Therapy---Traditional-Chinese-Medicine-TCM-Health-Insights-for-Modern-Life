@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleStartAssessment = () => {
-    navigate("/assessment");
+    navigate('/assessment');
   };
 
   const handleEmailSubmit = async () => {
@@ -15,7 +15,7 @@ const LandingPage = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
+      alert('Please enter a valid email address.');
       return;
     }
 
@@ -23,23 +23,23 @@ const LandingPage = () => {
 
     try {
       const FORM_ID =
-        "1FAIpQLSdZgTzzwpu3TAoCsFIDgMzCCKHDjqEZ9tw435o3aLMVbUciJw";
-      const ENTRY_ID = "entry.535282616";
+        '1FAIpQLSdZgTzzwpu3TAoCsFIDgMzCCKHDjqEZ9tw435o3aLMVbUciJw';
+      const ENTRY_ID = 'entry.535282616';
 
       const formData = new FormData();
       formData.append(ENTRY_ID, email);
 
       await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, {
-        method: "POST",
+        method: 'POST',
         body: formData,
-        mode: "no-cors",
+        mode: 'no-cors',
       });
 
-      alert("Thank you for subscribing! 🎉");
-      setEmail("");
+      alert('Thank you for subscribing! 🎉');
+      setEmail('');
     } catch (error) {
-      alert("Thank you for subscribing!");
-      setEmail("");
+      alert('Thank you for subscribing!');
+      setEmail('');
     } finally {
       setIsSubmitting(false);
     }
@@ -54,7 +54,7 @@ const LandingPage = () => {
             Discover Your Body's Natural Balance
           </h1>
           <p className="text-lg sm:text-xl text-stone-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            A personalized wellness tool inspired by{" "}
+            A personalized wellness tool inspired by{' '}
             <span className="font-tcm font-semibold">
               Traditional Chinese Medicine
             </span>
@@ -83,7 +83,7 @@ const LandingPage = () => {
             <p>
               <span className="font-tcm font-semibold">
                 Traditional Chinese Medicine
-              </span>{" "}
+              </span>{' '}
               views health as a dynamic balance between opposing forces—warmth
               and coolness, energy and rest, activity and stillness. Your
               constitution is your body's natural tendency along this spectrum.
@@ -283,7 +283,7 @@ const LandingPage = () => {
               disabled={isSubmitting}
               className="bg-stone-800 hover:bg-stone-900 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
             >
-              {isSubmitting ? "Subscribing..." : "Subscribe"}
+              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </button>
           </div>
         </div>
@@ -364,7 +364,7 @@ const LandingPage = () => {
             </div>
             <div className="text-center md:text-right">
               <p className="mb-2">
-                Developed by{" "}
+                Developed by{' '}
                 <a
                   href="https://github.com/huiqinhu5500"
                   target="_blank"
@@ -372,8 +372,8 @@ const LandingPage = () => {
                   className=" hover:text-white transition-colors"
                 >
                   Huiqin
-                </a>{" "}
-                &{" "}
+                </a>{' '}
+                &{' '}
                 <a
                   href="https://www.linkedin.com/in/shufanfan/"
                   target="_blank"
