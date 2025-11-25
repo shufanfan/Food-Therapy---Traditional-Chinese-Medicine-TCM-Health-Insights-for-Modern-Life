@@ -78,26 +78,30 @@ function calculateConstitution(answers) {
   };
 
   // Accumulate points for each answer
-  answers.forEach((answer, questionIndex) => {
-    // Normalize answer to uppercase
-    const normalizedAnswer = answer.toUpperCase();
+  answers.forEach((answerArray, questionIndex) => {
+    // Handle both old format (single string) and new format (array)
+    const selections = Array.isArray(answerArray) ? answerArray : [answerArray];
 
-    // Validate answer format
-    if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
-      throw new Error(
-        `Invalid answer "${answer}" at question ${
-          questionIndex + 1
-        }. Expected A, B, or C.`
-      );
-    }
+    selections.forEach((answer) => {
+      const normalizedAnswer = answer.toUpperCase();
 
-    // Get point allocation for this answer
-    const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
+      // Validate answer format
+      if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
+        throw new Error(
+          `Invalid answer "${answer}" at question ${
+            questionIndex + 1
+          }. Expected A, B, or C.`
+        );
+      }
 
-    // Add points to respective constitutions
-    scores.cold += points.cold;
-    scores.heat += points.heat;
-    scores.balanced += points.balanced;
+      // Get point allocation for this answer
+      const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
+
+      // Add points to respective constitutions (full points per selection)
+      scores.cold += points.cold;
+      scores.heat += points.heat;
+      scores.balanced += points.balanced;
+    });
   });
 
   // Determine the constitution with the highest score
@@ -129,16 +133,6 @@ function calculateConstitution(answers) {
   return topConstitutions[0];
 }
 
-/**
- * Get detailed scoring breakdown (useful for debugging or showing users their scores)
- *
- * @param {string[]} answers - Array of 5 answers
- * @returns {object} Object with scores and result
- *
- * @example
- * getDetailedScore(['A', 'B', 'C', 'A', 'B'])
- * // returns: { scores: { cold: 4, heat: 2, balanced: 4 }, result: 'balanced' }
- */
 function getDetailedScore(answers) {
   // Validate input
   if (!Array.isArray(answers) || answers.length !== 5) {
@@ -152,19 +146,24 @@ function getDetailedScore(answers) {
   };
 
   // Accumulate points
-  answers.forEach((answer, questionIndex) => {
-    const normalizedAnswer = answer.toUpperCase();
+  answers.forEach((answerArray, questionIndex) => {
+    // Handle both old format (single string) and new format (array)
+    const selections = Array.isArray(answerArray) ? answerArray : [answerArray];
 
-    if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
-      throw new Error(
-        `Invalid answer "${answer}" at question ${questionIndex + 1}`
-      );
-    }
+    selections.forEach((answer) => {
+      const normalizedAnswer = answer.toUpperCase();
 
-    const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
-    scores.cold += points.cold;
-    scores.heat += points.heat;
-    scores.balanced += points.balanced;
+      if (!['A', 'B', 'C'].includes(normalizedAnswer)) {
+        throw new Error(
+          `Invalid answer "${answer}" at question ${questionIndex + 1}`
+        );
+      }
+
+      const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
+      scores.cold += points.cold;
+      scores.heat += points.heat;
+      scores.balanced += points.balanced;
+    });
   });
 
   const result = calculateConstitution(answers);
@@ -172,7 +171,7 @@ function getDetailedScore(answers) {
   return {
     scores,
     result,
-    maxPossibleScore: 10,
+    maxPossibleScore: 10, // Note: with multi-select, max can exceed 10
   };
 }
 

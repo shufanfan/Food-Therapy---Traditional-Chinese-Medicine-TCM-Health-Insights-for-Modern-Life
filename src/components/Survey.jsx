@@ -80,18 +80,34 @@ const QUESTIONS = [
 
 function Survey({ onComplete }) {
   const navigate = useNavigate();
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0); // 这一行必须有！
+  const [allAnswers, setAllAnswers] = useState([]);
+  const [currentSelections, setCurrentSelections] = useState([]);
 
-  // Clear selected option when question changes
+  // Clear selections when question changes
   useEffect(() => {
-    setSelectedOption(null);
+    setCurrentSelections([]);
   }, [currentQuestion]);
 
-  const handleAnswer = (answer) => {
-    const newAnswers = [...answers, answer];
-    setAnswers(newAnswers);
+  const handleOptionToggle = (value) => {
+    if (currentSelections.includes(value)) {
+      // Deselect
+      setCurrentSelections(currentSelections.filter((v) => v !== value));
+    } else {
+      // Select
+      setCurrentSelections([...currentSelections, value]);
+    }
+  };
+
+  const handleNext = () => {
+    // Validation: at least 1 selected
+    if (currentSelections.length === 0) {
+      alert('Please select at least one option');
+      return;
+    }
+
+    const newAnswers = [...allAnswers, currentSelections];
+    setAllAnswers(newAnswers);
 
     if (currentQuestion < QUESTIONS.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
@@ -104,7 +120,7 @@ function Survey({ onComplete }) {
   const handleBack = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
-      setAnswers(answers.slice(0, -1));
+      setAllAnswers(allAnswers.slice(0, -1));
     }
   };
 
@@ -138,42 +154,70 @@ function Survey({ onComplete }) {
             {question.text}
           </h2>
 
+          {/* Instruction */}
+          <p className="text-stone-600 mb-4 text-sm italic">
+            Select all that apply
+          </p>
+
           {/* Options */}
           <div className="space-y-4">
             {question.options.map((option) => {
-              const isSelected = selectedOption === option.value;
+              const isSelected = currentSelections.includes(option.value);
               return (
                 <button
                   key={option.value}
-                  onClick={() => handleAnswer(option.value)}
+                  onClick={() => handleOptionToggle(option.value)}
                   className={`w-full text-left p-6 border-2 rounded-xl transition-all duration-200 focus:outline-none ${
                     isSelected
                       ? 'border-emerald-500 bg-emerald-50'
-                      : 'border-stone-200'
+                      : 'border-stone-200 hover:border-stone-300'
                   }`}
                 >
                   <div className="flex items-start">
+                    {/* Checkbox indicator */}
                     <span
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors duration-200 mr-4 ${
+                      className={`flex-shrink-0 w-8 h-8 rounded-md border-2 flex items-center justify-center font-bold transition-colors duration-200 mr-4 ${
                         isSelected
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-stone-100 text-stone-600'
+                          ? 'bg-emerald-500 border-emerald-500 text-white'
+                          : 'bg-white border-stone-300'
                       }`}
                     >
-                      {option.value}
+                      {isSelected && '✓'}
                     </span>
-                    <span
-                      className={`leading-relaxed ${
-                        isSelected ? 'text-stone-900' : 'text-stone-700'
-                      }`}
-                    >
-                      {option.label}
-                    </span>
+                    <div>
+                      <span className="text-sm font-semibold text-stone-500 mb-1 block">
+                        {option.value}
+                      </span>
+                      <span
+                        className={`leading-relaxed ${
+                          isSelected
+                            ? 'text-stone-900 font-medium'
+                            : 'text-stone-700'
+                        }`}
+                      >
+                        {option.label}
+                      </span>
+                    </div>
                   </div>
                 </button>
               );
             })}
           </div>
+
+          {/* Next Button */}
+          <button
+            onClick={handleNext}
+            disabled={currentSelections.length === 0}
+            className={`w-full mt-6 py-4 rounded-xl font-semibold text-lg transition-all duration-200 ${
+              currentSelections.length > 0
+                ? 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer'
+                : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+            }`}
+          >
+            {currentQuestion < QUESTIONS.length - 1
+              ? 'Next Question →'
+              : 'See Results →'}
+          </button>
         </div>
 
         {/* Back Button */}
