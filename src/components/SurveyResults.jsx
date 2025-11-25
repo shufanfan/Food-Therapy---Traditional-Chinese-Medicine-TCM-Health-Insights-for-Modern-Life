@@ -1,11 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { calculateConstitution } from '../Sprints/Sprint1/utils/constitutionCalculator';
+import { getDetailedScore } from '../Sprints/Sprint1/utils/constitutionCalculator';
 import recommendationsData from '../data/recommendations-display.json';
 
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
-  const constitution = calculateConstitution(answers);
+
+  // Get detailed scores
+  const detailedScores = getDetailedScore(answers);
+  const { scores, result } = detailedScores;
+  const constitution = result;
+
+  // Calculate percentages
+  const total = scores.cold + scores.heat + scores.balanced;
+  const percentages = {
+    cold: Math.round((scores.cold / total) * 100),
+    heat: Math.round((scores.heat / total) * 100),
+    balanced: Math.round((scores.balanced / total) * 100),
+  };
 
   const recommendations = recommendationsData[constitution];
 
@@ -36,6 +48,119 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
             {recommendations.description}
           </p>
+        </div>
+
+        {/* Score Breakdown Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+          <div className="flex items-center mb-6">
+            <span className="text-3xl mr-3">📊</span>
+            <h2 className="text-2xl font-bold text-stone-900">
+              Your Constitution Breakdown
+            </h2>
+          </div>
+
+          <p className="text-stone-600 mb-6 text-sm">
+            Your responses show characteristics of multiple constitution types.
+            Here's your complete profile:
+          </p>
+
+          <div className="space-y-4">
+            {/* Cold Constitution Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'cold' ? 'text-blue-700' : 'text-stone-700'}`}
+                >
+                  Cold Constitution {constitution === 'cold' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'cold' ? 'text-blue-700' : 'text-stone-600'}`}
+                >
+                  {percentages.cold}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'cold' ? 'bg-blue-500' : 'bg-blue-300'
+                  }`}
+                  style={{ width: `${percentages.cold}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Balanced Constitution Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'balanced' ? 'text-green-700' : 'text-stone-700'}`}
+                >
+                  Balanced Constitution{' '}
+                  {constitution === 'balanced' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'balanced' ? 'text-green-700' : 'text-stone-600'}`}
+                >
+                  {percentages.balanced}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'balanced'
+                      ? 'bg-green-500'
+                      : 'bg-green-300'
+                  }`}
+                  style={{ width: `${percentages.balanced}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Heat Constitution Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'heat' ? 'text-red-700' : 'text-stone-700'}`}
+                >
+                  Heat Constitution {constitution === 'heat' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'heat' ? 'text-red-700' : 'text-stone-600'}`}
+                >
+                  {percentages.heat}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'heat' ? 'bg-red-500' : 'bg-red-300'
+                  }`}
+                  style={{ width: `${percentages.heat}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Explanatory Text */}
+          <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
+            <p className="text-amber-900 text-sm leading-relaxed">
+              {percentages[constitution] < 60 ? (
+                <>
+                  <strong>Mixed Constitution:</strong> You show characteristics
+                  of multiple types. Your primary tendency is{' '}
+                  <strong>{recommendations.name}</strong>, but you also have
+                  traits from other constitutions. This is common and reflects
+                  the complexity of individual body patterns in TCM.
+                </>
+              ) : (
+                <>
+                  <strong>Clear Pattern:</strong> You strongly align with{' '}
+                  <strong>{recommendations.name}</strong>. Focus on the
+                  recommendations below to support your constitution.
+                </>
+              )}
+            </p>
+          </div>
         </div>
 
         {/* Recommended Teas Section */}
