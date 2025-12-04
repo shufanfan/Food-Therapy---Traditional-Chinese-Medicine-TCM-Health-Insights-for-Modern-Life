@@ -186,12 +186,12 @@ const AboutTCM = () => {
           {/* Why We Simplified */}
           <section>
             <h2 className="text-2xl font-semibold text-stone-900 mb-4">
-              Why Our Tool Uses 3 Constitution Types
+              Why Our Tool Uses 6 Constitution Types
             </h2>
             <p className="text-stone-600 leading-relaxed mb-4">
               While the full Wang Qi framework includes nine types, our
-              assessment tool uses a<strong> simplified 3-type system</strong>{' '}
-              for the following reasons:
+              assessment tool uses a<strong> 6-type system</strong> that
+              balances diagnostic accuracy with accessibility:
             </p>
 
             <div className="space-y-4">
