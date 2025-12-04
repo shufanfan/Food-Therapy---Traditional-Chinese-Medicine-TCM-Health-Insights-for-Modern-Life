@@ -14,9 +14,12 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   // Calculate percentages
   const total = scores.cold + scores.heat + scores.balanced;
   const percentages = {
+    balanced: Math.round((scores.balanced / total) * 100),
     cold: Math.round((scores.cold / total) * 100),
     heat: Math.round((scores.heat / total) * 100),
-    balanced: Math.round((scores.balanced / total) * 100),
+    qiDeficiency: Math.round((scores.qiDeficiency / total) * 100),
+    yinDeficiency: Math.round((scores.yinDeficiency / total) * 100),
+    phlegmDampness: Math.round((scores.phlegmDampness / total) * 100),
   };
 
   const recommendations = recommendationsData[constitution];
@@ -136,6 +139,86 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
                     constitution === 'heat' ? 'bg-red-500' : 'bg-red-300'
                   }`}
                   style={{ width: `${percentages.heat}%` }}
+                />
+              </div>
+            </div>
+            {/* Qi Deficiency Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'qiDeficiency' ? 'text-yellow-700' : 'text-stone-700'}`}
+                >
+                  Qi Deficiency Constitution{' '}
+                  {constitution === 'qiDeficiency' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'qiDeficiency' ? 'text-yellow-700' : 'text-stone-600'}`}
+                >
+                  {percentages.qiDeficiency}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'qiDeficiency'
+                      ? 'bg-yellow-500'
+                      : 'bg-yellow-300'
+                  }`}
+                  style={{ width: `${percentages.qiDeficiency}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Yin Deficiency Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'yinDeficiency' ? 'text-orange-700' : 'text-stone-700'}`}
+                >
+                  Yin Deficiency Constitution{' '}
+                  {constitution === 'yinDeficiency' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'yinDeficiency' ? 'text-orange-700' : 'text-stone-600'}`}
+                >
+                  {percentages.yinDeficiency}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'yinDeficiency'
+                      ? 'bg-orange-500'
+                      : 'bg-orange-300'
+                  }`}
+                  style={{ width: `${percentages.yinDeficiency}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Phlegm-Dampness Bar */}
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span
+                  className={`font-semibold ${constitution === 'phlegmDampness' ? 'text-purple-700' : 'text-stone-700'}`}
+                >
+                  Phlegm-Dampness Constitution{' '}
+                  {constitution === 'phlegmDampness' && '(Primary)'}
+                </span>
+                <span
+                  className={`font-bold ${constitution === 'phlegmDampness' ? 'text-purple-700' : 'text-stone-600'}`}
+                >
+                  {percentages.phlegmDampness}%
+                </span>
+              </div>
+              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className={`h-3 rounded-full transition-all duration-500 ${
+                    constitution === 'phlegmDampness'
+                      ? 'bg-purple-500'
+                      : 'bg-purple-300'
+                  }`}
+                  style={{ width: `${percentages.phlegmDampness}%` }}
                 />
               </div>
             </div>

@@ -68,5 +68,107 @@
       "Overconsumption of any single food"
     ],
     "principle": "Maintain harmony through variety, seasonal eating, and moderation."
+  },
+  "qiDeficiency": {
+    "name": "Qi Deficiency Constitution",
+    "chineseName": "气虚质",
+    "description": "You often feel tired and lack stamina. Your body needs energy-building, easily digestible foods and adequate rest.",
+    "teas": [
+      {
+        "name": "Astragalus Tea",
+        "benefit": "Tonifies Qi, boosts immune system, increases energy"
+      },
+      {
+        "name": "Ginseng Tea",
+        "benefit": "Strongly tonifies Qi and vitality"
+      },
+      {
+        "name": "Red Date Tea",
+        "benefit": "Nourishes blood and Qi, mild and sweet"
+      }
+    ],
+    "foods": {
+      "proteins": "Chicken, bone broth, fish, eggs",
+      "grains": "Rice, oats, sweet potato, yam",
+      "vegetables": "Cooked root vegetables, squash, mushrooms (shiitake)",
+      "other": "Dates, honey, walnuts, easily digestible foods"
+    },
+    "avoid": [
+      "Raw, cold foods (hard to digest)",
+      "Large meals (overwhelm digestion)",
+      "Excessive fasting",
+      "Too many stimulants (coffee, energy drinks)"
+    ],
+    "principle": "Build and preserve Qi through nourishing, easily digestible foods. Prioritize rest and avoid overexertion."
+  },
+  "yinDeficiency": {
+    "name": "Yin Deficiency Constitution",
+    "chineseName": "阴虚质",
+    "description": "You tend to feel warm, especially at night. You may experience dry mouth, night sweats, or restlessness. Your body benefits from cooling, moistening foods.",
+    "teas": [
+      {
+        "name": "Chrysanthemum Tea",
+        "benefit": "Clears heat, benefits eyes, calming"
+      },
+      {
+        "name": "Goji Berry Tea",
+        "benefit": "Nourishes Yin, benefits liver and kidneys"
+      },
+      {
+        "name": "White Tea",
+        "benefit": "Gentle, cooling, antioxidant-rich"
+      }
+    ],
+    "foods": {
+      "proteins": "Duck, white fish, tofu, eggs",
+      "fruits": "Pear, watermelon, berries, grapes",
+      "vegetables": "Spinach, cucumber, asparagus, celery, seaweed",
+      "grains": "Millet, barley, brown rice",
+      "other": "Coconut water, sesame seeds, foods with high water content"
+    },
+    "avoid": [
+      "Warming spices (excessive ginger, chili)",
+      "Red meat (beef, lamb)",
+      "Fried foods",
+      "Alcohol and coffee",
+      "Roasted nuts"
+    ],
+    "principle": "Cool and moisten with hydrating foods. Avoid heating, drying, and stimulating items."
+  },
+  "phlegmDampness": {
+    "name": "Phlegm-Dampness Constitution",
+    "chineseName": "痰湿质",
+    "description": "You may feel heavy or sluggish, especially in humid weather. You might experience excess mucus, bloating, or weight gain. Your body benefits from light, draining foods.",
+    "teas": [
+      {
+        "name": "Pu-erh Tea",
+        "benefit": "Cuts through dampness, aids digestion and weight management"
+      },
+      {
+        "name": "Oolong Tea",
+        "benefit": "Drains dampness, supports metabolism"
+      },
+      {
+        "name": "Hawthorn Tea",
+        "benefit": "Breaks down food stagnation, reduces phlegm"
+      }
+    ],
+    "foods": {
+      "proteins": "White fish, shrimp, chicken breast, beans (adzuki, mung)",
+      "grains": "Barley, Job's tears (薏米), quinoa, brown rice",
+      "vegetables": "Leafy greens, celery, radish, turnip, mushrooms, seaweed",
+      "spices": "Ginger, garlic, onion (drying, warming)",
+      "other": "Lemon, grapefruit, light and fresh foods"
+    },
+    "avoid": [
+      "Dairy (milk, cheese, yogurt - very damp-producing)",
+      "Fried and greasy foods",
+      "Excessive sweets and sugar",
+      "White flour products (bread, pastries)",
+      "Fatty meats",
+      "Bananas (dampening)",
+      "Processed foods"
+    ],
+    "principle": "Eat light, warm, and draining foods. Avoid heavy, rich, sweet, and cold items that create dampness."
   }
 }

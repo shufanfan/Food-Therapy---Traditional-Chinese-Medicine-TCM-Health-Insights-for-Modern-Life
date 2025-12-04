@@ -14,67 +14,304 @@
  *
  * Structure: { questionIndex: { answer: { constitution: points } } }
  *
- * All questions follow the same pattern:
- * - Answer A → Cold +2
- * - Answer B → Balanced +2
- * - Answer C → Heat +2
+
  */
 const SCORING_MATRIX = {
   0: {
-    // Q1: Temperature Preference
-    A: { cold: 2, heat: 0, balanced: 0 },
-    B: { cold: 0, heat: 0, balanced: 2 },
-    C: { cold: 0, heat: 2, balanced: 0 },
+    // Q1: Temperature
+    A: {
+      balanced: 0,
+      cold: 2,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
   },
   1: {
-    // Q2: Energy Levels
-    A: { cold: 2, heat: 0, balanced: 0 },
-    B: { cold: 0, heat: 0, balanced: 2 },
-    C: { cold: 0, heat: 2, balanced: 0 },
+    // Q2: Energy
+    A: {
+      balanced: 0,
+      cold: 1,
+      heat: 0,
+      qiDeficiency: 2,
+      yinDeficiency: 0,
+      phlegmDampness: 1,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
   },
   2: {
-    // Q3: Digestive Patterns
-    A: { cold: 2, heat: 0, balanced: 0 },
-    B: { cold: 0, heat: 0, balanced: 2 },
-    C: { cold: 0, heat: 2, balanced: 0 },
+    // Q3: Digestion
+    A: {
+      balanced: 0,
+      cold: 1,
+      heat: 0,
+      qiDeficiency: 2,
+      yinDeficiency: 0,
+      phlegmDampness: 1,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 2,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 2,
+    },
   },
   3: {
-    // Q4: Sleep & Night Symptoms
-    A: { cold: 2, heat: 0, balanced: 0 },
-    B: { cold: 0, heat: 0, balanced: 2 },
-    C: { cold: 0, heat: 2, balanced: 0 },
+    // Q4: Sleep
+    A: {
+      balanced: 0,
+      cold: 1,
+      heat: 0,
+      qiDeficiency: 2,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
   },
   4: {
-    // Q5: Food & Drink Preferences
-    A: { cold: 2, heat: 0, balanced: 0 },
-    B: { cold: 0, heat: 0, balanced: 2 },
-    C: { cold: 0, heat: 2, balanced: 0 },
+    // Q5: Food Preferences
+    A: {
+      balanced: 0,
+      cold: 2,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
+  },
+  5: {
+    // Q6: Moisture/Dryness - NEW
+    A: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 2,
+    },
+  },
+  6: {
+    // Q7: Body Build/Weight - NEW
+    A: {
+      balanced: 1,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 2,
+    },
+  },
+  7: {
+    // Q8: Weather Sensitivity - NEW
+    A: {
+      balanced: 0,
+      cold: 2,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 1,
+      phlegmDampness: 2,
+    },
+  },
+  8: {
+    // Q9: Thirst/Hydration - NEW
+    A: {
+      balanced: 0,
+      cold: 0,
+      heat: 1,
+      qiDeficiency: 0,
+      yinDeficiency: 2,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
+    C: {
+      balanced: 0,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 2,
+    },
+  },
+  9: {
+    // Q10: Stamina/Recovery - NEW
+    A: {
+      balanced: 2,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 0,
+      yinDeficiency: 1,
+      phlegmDampness: 0,
+    },
+    B: {
+      balanced: 0,
+      cold: 1,
+      heat: 0,
+      qiDeficiency: 2,
+      yinDeficiency: 0,
+      phlegmDampness: 1,
+    },
+    C: {
+      balanced: 1,
+      cold: 0,
+      heat: 0,
+      qiDeficiency: 1,
+      yinDeficiency: 0,
+      phlegmDampness: 0,
+    },
   },
 };
 
 /**
  * Calculate TCM constitution based on survey answers
  *
- * @param {string[]} answers - Array of 5 answers, each 'A', 'B', or 'C'
- * @returns {string} Constitution type: 'cold', 'heat', or 'balanced'
+ * @param {Array} answers - Array of 10 answers, each can be string or array of strings
+ * @returns {string} Constitution type: 'balanced', 'cold', 'heat', 'qiDeficiency', 'yinDeficiency', or 'phlegmDampness'
  *
  * @example
- * calculateConstitution(['A', 'A', 'A', 'A', 'A']) // returns 'cold'
- * calculateConstitution(['B', 'B', 'B', 'B', 'B']) // returns 'balanced'
- * calculateConstitution(['C', 'C', 'C', 'C', 'C']) // returns 'heat'
- * calculateConstitution(['A', 'A', 'C', 'C', 'B']) // returns 'balanced' (tie)
+ * calculateConstitution([['A'], ['A'], ...]) // 10 questions with multi-select
  */
 function calculateConstitution(answers) {
   // Validate input
-  if (!Array.isArray(answers) || answers.length !== 5) {
-    throw new Error('Expected an array of 5 answers');
+  if (!Array.isArray(answers) || answers.length !== 10) {
+    throw new Error('Expected an array of 10 answers');
   }
 
   // Initialize score counters
   const scores = {
+    balanced: 0,
     cold: 0,
     heat: 0,
-    balanced: 0,
+    qiDeficiency: 0,
+    yinDeficiency: 0,
+    phlegmDampness: 0,
   };
 
   // Accumulate points for each answer
@@ -98,15 +335,24 @@ function calculateConstitution(answers) {
       const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
 
       // Add points to respective constitutions (full points per selection)
+      scores.balanced += points.balanced;
       scores.cold += points.cold;
       scores.heat += points.heat;
-      scores.balanced += points.balanced;
+      scores.qiDeficiency += points.qiDeficiency;
+      scores.yinDeficiency += points.yinDeficiency;
+      scores.phlegmDampness += points.phlegmDampness;
     });
   });
 
   // Determine the constitution with the highest score
-  const maxScore = Math.max(scores.cold, scores.heat, scores.balanced);
-
+  const maxScore = Math.max(
+    scores.balanced,
+    scores.cold,
+    scores.heat,
+    scores.qiDeficiency,
+    scores.yinDeficiency,
+    scores.phlegmDampness
+  );
   // Find all constitutions that have the max score (for tie handling)
   const topConstitutions = Object.keys(scores).filter(
     (constitution) => scores[constitution] === maxScore
@@ -135,14 +381,17 @@ function calculateConstitution(answers) {
 
 function getDetailedScore(answers) {
   // Validate input
-  if (!Array.isArray(answers) || answers.length !== 5) {
+  if (!Array.isArray(answers) || answers.length !== 10) {
     throw new Error('Expected an array of 5 answers');
   }
 
   const scores = {
+    balanced: 0,
     cold: 0,
     heat: 0,
-    balanced: 0,
+    qiDeficiency: 0,
+    yinDeficiency: 0,
+    phlegmDampness: 0,
   };
 
   // Accumulate points
@@ -160,9 +409,12 @@ function getDetailedScore(answers) {
       }
 
       const points = SCORING_MATRIX[questionIndex][normalizedAnswer];
+      scores.balanced += points.balanced;
       scores.cold += points.cold;
       scores.heat += points.heat;
-      scores.balanced += points.balanced;
+      scores.qiDeficiency += points.qiDeficiency;
+      scores.yinDeficiency += points.yinDeficiency;
+      scores.phlegmDampness += points.phlegmDampness;
     });
   });
 

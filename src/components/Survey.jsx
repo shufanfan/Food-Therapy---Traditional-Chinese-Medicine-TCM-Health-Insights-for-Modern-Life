@@ -76,6 +76,102 @@ const QUESTIONS = [
       },
     ],
   },
+  {
+    id: 5,
+    text: 'Which best describes your experience with moisture or dryness?',
+    options: [
+      { value: 'A', label: 'I often have dry mouth, dry skin, or dry throat' },
+      {
+        value: 'B',
+        label:
+          'I feel comfortable; no particular dryness or excessive moisture',
+      },
+      {
+        value: 'C',
+        label: 'I have oily skin, excessive mucus/phlegm, or sticky sensations',
+      },
+    ],
+  },
+  {
+    id: 6,
+    text: 'How would you describe your body build and weight patterns?',
+    options: [
+      {
+        value: 'A',
+        label: 'I tend to be lean or have difficulty gaining weight',
+      },
+      {
+        value: 'B',
+        label: 'My weight is stable and proportionate to my height',
+      },
+      {
+        value: 'C',
+        label:
+          'I gain weight easily or feel heavy/puffy, especially around abdomen',
+      },
+    ],
+  },
+  {
+    id: 7,
+    text: 'How does weather or environment affect you?',
+    options: [
+      {
+        value: 'A',
+        label: 'I feel worse in cold weather or need extra layers',
+      },
+      {
+        value: 'B',
+        label: "I'm generally comfortable in various weather conditions",
+      },
+      {
+        value: 'C',
+        label:
+          'I feel worse in hot or humid weather; I prefer cool, dry environments',
+      },
+    ],
+  },
+  {
+    id: 8,
+    text: 'How would you describe your thirst and drinking habits?',
+    options: [
+      {
+        value: 'A',
+        label:
+          "I'm often thirsty and prefer drinking cold water; my mouth feels dry",
+      },
+      {
+        value: 'B',
+        label:
+          "I drink when thirsty but don't think about it much; normal hydration",
+      },
+      {
+        value: 'C',
+        label:
+          "I'm rarely thirsty and don't drink much; water may feel heavy in my stomach",
+      },
+    ],
+  },
+  {
+    id: 9,
+    text: 'How is your physical stamina and recovery from exertion or illness?',
+    options: [
+      {
+        value: 'A',
+        label:
+          'I have good stamina; I recover quickly from exercise or illness',
+      },
+      {
+        value: 'B',
+        label:
+          'I tire easily with physical activity and take a long time to recover',
+      },
+      {
+        value: 'C',
+        label:
+          'My stamina varies; sometimes good, sometimes I feel drained or get sick easily',
+      },
+    ],
+  },
 ];
 
 function Survey({ onComplete }) {
