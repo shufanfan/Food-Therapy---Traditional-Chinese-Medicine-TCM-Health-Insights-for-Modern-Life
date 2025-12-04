@@ -34,6 +34,23 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     navigate('/assessment');
   };
 
+  const handleCopyLink = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        alert('Results link copied to clipboard! Share it with friends.');
+      })
+      .catch(() => {
+        alert('Failed to copy link. Please copy manually: ' + currentUrl);
+      });
+  };
+
+  const handleDownloadImage = () => {
+    // Simple solution: trigger browser's built-in screenshot/print
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-stone-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -338,7 +355,58 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
             {recommendations.principle}
           </p>
         </div>
-
+        {/* Share Section */}
+        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl shadow-lg p-8 mb-8">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold text-white mb-3">
+              Share Your Results
+            </h3>
+            <p className="text-emerald-50 mb-6">
+              Help others discover their TCM constitution! Share your results or
+              save them for reference.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+                Copy Link
+              </button>
+              <button
+                onClick={handleDownloadImage}
+                className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Save as Image
+              </button>
+            </div>
+          </div>
+        </div>
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
