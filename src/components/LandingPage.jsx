@@ -58,7 +58,7 @@ const LandingPage = () => {
             <span className="font-tcm font-semibold">
               Traditional Chinese Medicine
             </span>
-            . Take a quick 5-question assessment to understand your unique
+            . Take a quick 10-question assessment to understand your unique
             constitution and receive food recommendations tailored to your body.
           </p>
           <button
@@ -68,7 +68,7 @@ const LandingPage = () => {
             Start Your Assessment →
           </button>
           <p className="text-sm text-stone-500 mt-4">
-            Takes less than 2 minutes
+            Takes less than 3 minutes
           </p>
         </div>
       </section>
