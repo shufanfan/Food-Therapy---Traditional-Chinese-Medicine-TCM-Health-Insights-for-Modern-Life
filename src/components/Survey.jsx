@@ -247,7 +247,7 @@ function Survey({ onComplete }) {
         {/* Question Card */}
         <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-10 mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-8 leading-relaxed">
-            {question.text}
+            {currentQuestion + 1}. {question.text}
           </h2>
 
           {/* Instruction */}
