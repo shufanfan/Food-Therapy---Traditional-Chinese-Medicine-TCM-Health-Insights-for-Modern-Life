@@ -281,9 +281,6 @@ function Survey({ onComplete }) {
                       {isSelected && '✓'}
                     </span>
                     <div>
-                      <span className="text-sm font-semibold text-stone-500 mb-1 block">
-                        {option.value}
-                      </span>
                       <span
                         className={`leading-relaxed ${
                           isSelected
