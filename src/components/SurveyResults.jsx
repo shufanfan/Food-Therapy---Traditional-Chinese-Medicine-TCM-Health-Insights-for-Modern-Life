@@ -22,6 +22,46 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     phlegmDampness: Math.round((scores.phlegmDampness / total) * 100),
   };
 
+  // Create sorted array of constitutions
+  const sortedConstitutions = [
+    {
+      key: 'balanced',
+      name: 'Balanced Constitution',
+      percentage: percentages.balanced,
+      color: 'green',
+    },
+    {
+      key: 'cold',
+      name: 'Cold Constitution',
+      percentage: percentages.cold,
+      color: 'blue',
+    },
+    {
+      key: 'heat',
+      name: 'Heat Constitution',
+      percentage: percentages.heat,
+      color: 'red',
+    },
+    {
+      key: 'qiDeficiency',
+      name: 'Qi Deficiency Constitution',
+      percentage: percentages.qiDeficiency,
+      color: 'yellow',
+    },
+    {
+      key: 'yinDeficiency',
+      name: 'Yin Deficiency Constitution',
+      percentage: percentages.yinDeficiency,
+      color: 'orange',
+    },
+    {
+      key: 'phlegmDampness',
+      name: 'Phlegm-Dampness Constitution',
+      percentage: percentages.phlegmDampness,
+      color: 'purple',
+    },
+  ].sort((a, b) => b.percentage - a.percentage);
+
   const recommendations = recommendationsData[constitution];
 
   const handleReturnHome = () => {
@@ -85,159 +125,59 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           </p>
 
           <div className="space-y-4">
-            {/* Cold Constitution Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'cold' ? 'text-blue-700' : 'text-stone-700'}`}
-                >
-                  Cold Constitution {constitution === 'cold' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'cold' ? 'text-blue-700' : 'text-stone-600'}`}
-                >
-                  {percentages.cold}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'cold' ? 'bg-blue-500' : 'bg-blue-300'
-                  }`}
-                  style={{ width: `${percentages.cold}%` }}
-                />
-              </div>
-            </div>
+            <div className="space-y-4">
+              {sortedConstitutions.map((item) => {
+                const isPrimary = item.key === constitution;
 
-            {/* Balanced Constitution Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'balanced' ? 'text-green-700' : 'text-stone-700'}`}
-                >
-                  Balanced Constitution{' '}
-                  {constitution === 'balanced' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'balanced' ? 'text-green-700' : 'text-stone-600'}`}
-                >
-                  {percentages.balanced}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'balanced'
-                      ? 'bg-green-500'
-                      : 'bg-green-300'
-                  }`}
-                  style={{ width: `${percentages.balanced}%` }}
-                />
-              </div>
-            </div>
+                // Define colors for each type
+                const getBarColor = (colorName, isPrimary) => {
+                  const colorMap = {
+                    green: isPrimary ? 'bg-green-500' : 'bg-green-300',
+                    blue: isPrimary ? 'bg-blue-500' : 'bg-blue-300',
+                    red: isPrimary ? 'bg-red-500' : 'bg-red-300',
+                    yellow: isPrimary ? 'bg-yellow-500' : 'bg-yellow-300',
+                    orange: isPrimary ? 'bg-orange-500' : 'bg-orange-300',
+                    purple: isPrimary ? 'bg-purple-500' : 'bg-purple-300',
+                  };
+                  return colorMap[colorName];
+                };
 
-            {/* Heat Constitution Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'heat' ? 'text-red-700' : 'text-stone-700'}`}
-                >
-                  Heat Constitution {constitution === 'heat' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'heat' ? 'text-red-700' : 'text-stone-600'}`}
-                >
-                  {percentages.heat}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'heat' ? 'bg-red-500' : 'bg-red-300'
-                  }`}
-                  style={{ width: `${percentages.heat}%` }}
-                />
-              </div>
-            </div>
-            {/* Qi Deficiency Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'qiDeficiency' ? 'text-yellow-700' : 'text-stone-700'}`}
-                >
-                  Qi Deficiency Constitution{' '}
-                  {constitution === 'qiDeficiency' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'qiDeficiency' ? 'text-yellow-700' : 'text-stone-600'}`}
-                >
-                  {percentages.qiDeficiency}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'qiDeficiency'
-                      ? 'bg-yellow-500'
-                      : 'bg-yellow-300'
-                  }`}
-                  style={{ width: `${percentages.qiDeficiency}%` }}
-                />
-              </div>
-            </div>
+                const getTextColor = (colorName, isPrimary) => {
+                  if (!isPrimary) return 'text-stone-700';
+                  const colorMap = {
+                    green: 'text-green-700',
+                    blue: 'text-blue-700',
+                    red: 'text-red-700',
+                    yellow: 'text-yellow-700',
+                    orange: 'text-orange-700',
+                    purple: 'text-purple-700',
+                  };
+                  return colorMap[colorName];
+                };
 
-            {/* Yin Deficiency Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'yinDeficiency' ? 'text-orange-700' : 'text-stone-700'}`}
-                >
-                  Yin Deficiency Constitution{' '}
-                  {constitution === 'yinDeficiency' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'yinDeficiency' ? 'text-orange-700' : 'text-stone-600'}`}
-                >
-                  {percentages.yinDeficiency}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'yinDeficiency'
-                      ? 'bg-orange-500'
-                      : 'bg-orange-300'
-                  }`}
-                  style={{ width: `${percentages.yinDeficiency}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Phlegm-Dampness Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span
-                  className={`font-semibold ${constitution === 'phlegmDampness' ? 'text-purple-700' : 'text-stone-700'}`}
-                >
-                  Phlegm-Dampness Constitution{' '}
-                  {constitution === 'phlegmDampness' && '(Primary)'}
-                </span>
-                <span
-                  className={`font-bold ${constitution === 'phlegmDampness' ? 'text-purple-700' : 'text-stone-600'}`}
-                >
-                  {percentages.phlegmDampness}%
-                </span>
-              </div>
-              <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className={`h-3 rounded-full transition-all duration-500 ${
-                    constitution === 'phlegmDampness'
-                      ? 'bg-purple-500'
-                      : 'bg-purple-300'
-                  }`}
-                  style={{ width: `${percentages.phlegmDampness}%` }}
-                />
-              </div>
+                return (
+                  <div key={item.key}>
+                    <div className="flex justify-between items-center mb-2">
+                      <span
+                        className={`font-semibold ${getTextColor(item.color, isPrimary)}`}
+                      >
+                        {item.name} {isPrimary && '(Primary)'}
+                      </span>
+                      <span
+                        className={`font-bold ${isPrimary ? getTextColor(item.color, true) : 'text-stone-600'}`}
+                      >
+                        {item.percentage}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                      <div
+                        className={`h-3 rounded-full transition-all duration-500 ${getBarColor(item.color, isPrimary)}`}
+                        style={{ width: `${item.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
