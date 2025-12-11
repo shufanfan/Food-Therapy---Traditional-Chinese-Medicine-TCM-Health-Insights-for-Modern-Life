@@ -6,12 +6,20 @@ import recommendationsData from '../data/recommendations-display.json';
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
 
-  // NEW: Check if answers come from URL parameter
+  // ✅ ALL useState hooks at the top
   const [actualAnswers, setActualAnswers] = useState(answers);
   const [isLoading, setIsLoading] = useState(false);
+  const [tracking, setTracking] = useState({
+    drinkingTeas: false,
+    eatingRecommended: false,
+    avoidingFoods: false,
+    startDate: null,
+    lastUpdated: null,
+  });
 
+  // ✅ ALL useEffect hooks after useState
+  // Load answers from URL if needed
   useEffect(() => {
-    // If no answers passed as prop, try to get from URL
     if (!answers || answers.length === 0) {
       setIsLoading(true);
       const urlParams = new URLSearchParams(window.location.search);
@@ -34,7 +42,40 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     }
   }, [answers, navigate]);
 
-  // Show loading state while checking URL
+  // Load tracking from localStorage
+  useEffect(() => {
+    if (actualAnswers && actualAnswers.length > 0) {
+      try {
+        const detailedScores = getDetailedScore(actualAnswers);
+        const constitution = detailedScores.result;
+
+        const saved = localStorage.getItem(`tcm-tracking-${constitution}`);
+        if (saved) {
+          setTracking(JSON.parse(saved));
+        }
+      } catch (error) {
+        console.error('Error loading tracking data:', error);
+      }
+    }
+  }, [actualAnswers]);
+
+  // Save tracking to localStorage
+  useEffect(() => {
+    if (actualAnswers && actualAnswers.length > 0) {
+      try {
+        const detailedScores = getDetailedScore(actualAnswers);
+        const constitution = detailedScores.result;
+        localStorage.setItem(
+          `tcm-tracking-${constitution}`,
+          JSON.stringify(tracking)
+        );
+      } catch (error) {
+        console.error('Error saving tracking data:', error);
+      }
+    }
+  }, [tracking, actualAnswers]);
+
+  // ✅ Early return AFTER all hooks
   if (isLoading || !actualAnswers || actualAnswers.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-stone-50 py-12 px-4 flex items-center justify-center">
@@ -51,7 +92,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const { scores, result } = detailedScores;
   const constitution = result;
 
-  // FIXED: Calculate percentages - include ALL 6 constitution types in total
+  // Calculate percentages
   const total =
     scores.cold +
     scores.heat +
@@ -68,23 +109,21 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     yinDeficiency: (scores.yinDeficiency / total) * 100,
     phlegmDampness: (scores.phlegmDampness / total) * 100,
   };
+
   // Use largest remainder method to ensure sum = 100%
   const roundedPercentages = {};
   const keys = Object.keys(exactPercentages);
   const floors = {};
   const remainders = {};
 
-  // Step 1: Floor all values and calculate remainders
   keys.forEach((key) => {
     floors[key] = Math.floor(exactPercentages[key]);
     remainders[key] = exactPercentages[key] - floors[key];
   });
 
-  // Step 2: Calculate how many 1% we need to distribute
   let sum = Object.values(floors).reduce((a, b) => a + b, 0);
   let toDistribute = 100 - sum;
 
-  // Step 3: Sort by remainder (largest first) and distribute remaining 1%s
   const sortedByRemainder = keys.sort((a, b) => remainders[b] - remainders[a]);
 
   keys.forEach((key) => {
@@ -98,7 +137,6 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
 
   const percentages = roundedPercentages;
 
-  // Create sorted array of constitutions
   const sortedConstitutions = [
     {
       key: 'balanced',
@@ -150,7 +188,6 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     navigate('/assessment');
   };
 
-  // UPDATED: Copy link with encoded answers
   const handleCopyLink = () => {
     try {
       const encodedAnswers = encodeURIComponent(JSON.stringify(actualAnswers));
@@ -162,7 +199,6 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           alert('Results link copied to clipboard! Share it with friends.');
         })
         .catch(() => {
-          // Fallback for browsers that don't support clipboard API
           alert('Link ready to copy:\n\n' + shareUrl);
         });
     } catch (error) {
@@ -172,8 +208,49 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   };
 
   const handleDownloadImage = () => {
-    // Simple solution: trigger browser's built-in screenshot/print
     window.print();
+  };
+
+  const handleTrackingChange = (field) => {
+    setTracking((prev) => {
+      const newValue = !prev[field];
+      const now = new Date().toISOString();
+
+      const isFirstCheck =
+        !prev.drinkingTeas && !prev.eatingRecommended && !prev.avoidingFoods;
+
+      return {
+        ...prev,
+        [field]: newValue,
+        startDate: isFirstCheck && newValue ? now : prev.startDate,
+        lastUpdated: now,
+      };
+    });
+  };
+
+  const handleResetTracking = () => {
+    if (
+      window.confirm(
+        'Are you sure you want to reset your tracking progress? This cannot be undone.'
+      )
+    ) {
+      setTracking({
+        drinkingTeas: false,
+        eatingRecommended: false,
+        avoidingFoods: false,
+        startDate: null,
+        lastUpdated: null,
+      });
+    }
+  };
+
+  const getDaysTracking = () => {
+    if (!tracking.startDate) return 0;
+    const start = new Date(tracking.startDate);
+    const now = new Date();
+    const diffTime = Math.abs(now - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   };
 
   return (
@@ -212,60 +289,57 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
             </p>
 
             <div className="space-y-4">
-              <div className="space-y-4">
-                {sortedConstitutions.map((item) => {
-                  const isPrimary = item.key === constitution;
+              {sortedConstitutions.map((item) => {
+                const isPrimary = item.key === constitution;
 
-                  // Define colors for each type
-                  const getBarColor = (colorName, isPrimary) => {
-                    const colorMap = {
-                      green: isPrimary ? 'bg-green-500' : 'bg-green-300',
-                      blue: isPrimary ? 'bg-blue-500' : 'bg-blue-300',
-                      red: isPrimary ? 'bg-red-500' : 'bg-red-300',
-                      yellow: isPrimary ? 'bg-yellow-500' : 'bg-yellow-300',
-                      orange: isPrimary ? 'bg-orange-500' : 'bg-orange-300',
-                      purple: isPrimary ? 'bg-purple-500' : 'bg-purple-300',
-                    };
-                    return colorMap[colorName];
+                const getBarColor = (colorName, isPrimary) => {
+                  const colorMap = {
+                    green: isPrimary ? 'bg-green-500' : 'bg-green-300',
+                    blue: isPrimary ? 'bg-blue-500' : 'bg-blue-300',
+                    red: isPrimary ? 'bg-red-500' : 'bg-red-300',
+                    yellow: isPrimary ? 'bg-yellow-500' : 'bg-yellow-300',
+                    orange: isPrimary ? 'bg-orange-500' : 'bg-orange-300',
+                    purple: isPrimary ? 'bg-purple-500' : 'bg-purple-300',
                   };
+                  return colorMap[colorName];
+                };
 
-                  const getTextColor = (colorName, isPrimary) => {
-                    if (!isPrimary) return 'text-stone-700';
-                    const colorMap = {
-                      green: 'text-green-700',
-                      blue: 'text-blue-700',
-                      red: 'text-red-700',
-                      yellow: 'text-yellow-700',
-                      orange: 'text-orange-700',
-                      purple: 'text-purple-700',
-                    };
-                    return colorMap[colorName];
+                const getTextColor = (colorName, isPrimary) => {
+                  if (!isPrimary) return 'text-stone-700';
+                  const colorMap = {
+                    green: 'text-green-700',
+                    blue: 'text-blue-700',
+                    red: 'text-red-700',
+                    yellow: 'text-yellow-700',
+                    orange: 'text-orange-700',
+                    purple: 'text-purple-700',
                   };
+                  return colorMap[colorName];
+                };
 
-                  return (
-                    <div key={item.key}>
-                      <div className="flex justify-between items-center mb-2">
-                        <span
-                          className={`font-semibold ${getTextColor(item.color, isPrimary)}`}
-                        >
-                          {item.name} {isPrimary && '(Primary)'}
-                        </span>
-                        <span
-                          className={`font-bold ${isPrimary ? getTextColor(item.color, true) : 'text-stone-600'}`}
-                        >
-                          {item.percentage}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                        <div
-                          className={`h-3 rounded-full transition-all duration-500 ${getBarColor(item.color, isPrimary)}`}
-                          style={{ width: `${item.percentage}%` }}
-                        />
-                      </div>
+                return (
+                  <div key={item.key}>
+                    <div className="flex justify-between items-center mb-2">
+                      <span
+                        className={`font-semibold ${getTextColor(item.color, isPrimary)}`}
+                      >
+                        {item.name} {isPrimary && '(Primary)'}
+                      </span>
+                      <span
+                        className={`font-bold ${isPrimary ? getTextColor(item.color, true) : 'text-stone-600'}`}
+                      >
+                        {item.percentage}%
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
+                    <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                      <div
+                        className={`h-3 rounded-full transition-all duration-500 ${getBarColor(item.color, isPrimary)}`}
+                        style={{ width: `${item.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Explanatory Text */}
@@ -300,7 +374,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
                 Help others discover their TCM constitution! Share your results
                 or save them for reference.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col gap-4">
                 <button
                   onClick={handleCopyLink}
                   className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
@@ -435,6 +509,160 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           <p className="text-white text-lg leading-relaxed">
             {recommendations.principle}
           </p>
+        </div>
+
+        {/* Track My Progress Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center">
+              <span className="text-3xl mr-3">📈</span>
+              <h2 className="text-2xl font-bold text-stone-900">
+                Track My Progress
+              </h2>
+            </div>
+            {tracking.startDate && (
+              <div className="text-right">
+                <p className="text-sm text-stone-600">Days tracking</p>
+                <p className="text-2xl font-bold text-emerald-600">
+                  {getDaysTracking()}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <p className="text-stone-600 mb-6">
+            Use this tracker to monitor your progress with TCM recommendations.
+            Your data stays private on your device.
+          </p>
+
+          {/* Checklist */}
+          <div className="space-y-4 mb-6">
+            <label className="flex items-start p-4 border-2 border-stone-200 rounded-xl cursor-pointer hover:border-emerald-300 transition-colors">
+              <input
+                type="checkbox"
+                checked={tracking.drinkingTeas}
+                onChange={() => handleTrackingChange('drinkingTeas')}
+                className="w-5 h-5 mt-0.5 mr-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+              />
+              <div>
+                <span className="font-semibold text-stone-900">
+                  I'm drinking recommended teas
+                </span>
+                <p className="text-sm text-stone-600 mt-1">
+                  Following the tea recommendations for my constitution type
+                </p>
+              </div>
+            </label>
+
+            <label className="flex items-start p-4 border-2 border-stone-200 rounded-xl cursor-pointer hover:border-emerald-300 transition-colors">
+              <input
+                type="checkbox"
+                checked={tracking.eatingRecommended}
+                onChange={() => handleTrackingChange('eatingRecommended')}
+                className="w-5 h-5 mt-0.5 mr-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+              />
+              <div>
+                <span className="font-semibold text-stone-900">
+                  I'm eating more recommended foods
+                </span>
+                <p className="text-sm text-stone-600 mt-1">
+                  Incorporating foods that support my constitution
+                </p>
+              </div>
+            </label>
+
+            <label className="flex items-start p-4 border-2 border-stone-200 rounded-xl cursor-pointer hover:border-emerald-300 transition-colors">
+              <input
+                type="checkbox"
+                checked={tracking.avoidingFoods}
+                onChange={() => handleTrackingChange('avoidingFoods')}
+                className="w-5 h-5 mt-0.5 mr-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer"
+              />
+              <div>
+                <span className="font-semibold text-stone-900">
+                  I'm avoiding foods to limit
+                </span>
+                <p className="text-sm text-stone-600 mt-1">
+                  Reducing or eliminating foods that don't suit my constitution
+                </p>
+              </div>
+            </label>
+          </div>
+
+          {/* Progress indicator */}
+          {(tracking.drinkingTeas ||
+            tracking.eatingRecommended ||
+            tracking.avoidingFoods) && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-emerald-900">
+                  Progress
+                </span>
+                <span className="text-sm font-bold text-emerald-700">
+                  {
+                    [
+                      tracking.drinkingTeas,
+                      tracking.eatingRecommended,
+                      tracking.avoidingFoods,
+                    ].filter(Boolean).length
+                  }{' '}
+                  / 3 habits
+                </span>
+              </div>
+              <div className="w-full bg-emerald-200 rounded-full h-2">
+                <div
+                  className="bg-emerald-600 h-2 rounded-full transition-all duration-500"
+                  style={{
+                    width: `${([tracking.drinkingTeas, tracking.eatingRecommended, tracking.avoidingFoods].filter(Boolean).length / 3) * 100}%`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Reset button */}
+          {tracking.startDate && (
+            <button
+              onClick={handleResetTracking}
+              className="text-stone-600 hover:text-red-600 text-sm font-medium transition-colors flex items-center"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              Reset tracking
+            </button>
+          )}
+
+          {/* Privacy note */}
+          <div className="mt-6 pt-6 border-t border-stone-200">
+            <p className="text-xs text-stone-500 flex items-center">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+              Your tracking data is stored locally on your device and never
+              leaves your browser.
+            </p>
+          </div>
         </div>
 
         {/* Action Buttons */}
