@@ -12,7 +12,14 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const constitution = result;
 
   // Calculate percentages
-  const total = scores.cold + scores.heat + scores.balanced;
+  const total =
+    scores.cold +
+    scores.heat +
+    scores.balanced +
+    scores.qiDeficiency +
+    scores.yinDeficiency +
+    scores.phlegmDampness;
+
   const percentages = {
     balanced: Math.round((scores.balanced / total) * 100),
     cold: Math.round((scores.cold / total) * 100),
