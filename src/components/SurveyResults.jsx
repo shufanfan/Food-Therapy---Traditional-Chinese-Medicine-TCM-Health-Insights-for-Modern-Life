@@ -110,96 +110,152 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           </p>
         </div>
 
-        {/* Score Breakdown Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
-          <div className="flex items-center mb-6">
-            <span className="text-3xl mr-3">📊</span>
-            <h2 className="text-2xl font-bold text-stone-900">
-              Your Constitution Breakdown
-            </h2>
-          </div>
+        {/* Breakdown + Share Grid */}
+        <div className="grid md:grid-cols-3 gap-6 mb-6">
+          {/* Left: Score Breakdown */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:col-span-2">
+            <div className="flex items-center mb-6">
+              <span className="text-3xl mr-3">📊</span>
+              <h2 className="text-2xl font-bold text-stone-900">
+                Your Constitution Breakdown
+              </h2>
+            </div>
 
-          <p className="text-stone-600 mb-6 text-sm">
-            Your responses show characteristics of multiple constitution types.
-            Here's your complete profile:
-          </p>
+            <p className="text-stone-600 mb-6 text-sm">
+              Your responses show characteristics of multiple constitution
+              types. Here's your complete profile:
+            </p>
 
-          <div className="space-y-4">
             <div className="space-y-4">
-              {sortedConstitutions.map((item) => {
-                const isPrimary = item.key === constitution;
+              <div className="space-y-4">
+                {sortedConstitutions.map((item) => {
+                  const isPrimary = item.key === constitution;
 
-                // Define colors for each type
-                const getBarColor = (colorName, isPrimary) => {
-                  const colorMap = {
-                    green: isPrimary ? 'bg-green-500' : 'bg-green-300',
-                    blue: isPrimary ? 'bg-blue-500' : 'bg-blue-300',
-                    red: isPrimary ? 'bg-red-500' : 'bg-red-300',
-                    yellow: isPrimary ? 'bg-yellow-500' : 'bg-yellow-300',
-                    orange: isPrimary ? 'bg-orange-500' : 'bg-orange-300',
-                    purple: isPrimary ? 'bg-purple-500' : 'bg-purple-300',
+                  // Define colors for each type
+                  const getBarColor = (colorName, isPrimary) => {
+                    const colorMap = {
+                      green: isPrimary ? 'bg-green-500' : 'bg-green-300',
+                      blue: isPrimary ? 'bg-blue-500' : 'bg-blue-300',
+                      red: isPrimary ? 'bg-red-500' : 'bg-red-300',
+                      yellow: isPrimary ? 'bg-yellow-500' : 'bg-yellow-300',
+                      orange: isPrimary ? 'bg-orange-500' : 'bg-orange-300',
+                      purple: isPrimary ? 'bg-purple-500' : 'bg-purple-300',
+                    };
+                    return colorMap[colorName];
                   };
-                  return colorMap[colorName];
-                };
 
-                const getTextColor = (colorName, isPrimary) => {
-                  if (!isPrimary) return 'text-stone-700';
-                  const colorMap = {
-                    green: 'text-green-700',
-                    blue: 'text-blue-700',
-                    red: 'text-red-700',
-                    yellow: 'text-yellow-700',
-                    orange: 'text-orange-700',
-                    purple: 'text-purple-700',
+                  const getTextColor = (colorName, isPrimary) => {
+                    if (!isPrimary) return 'text-stone-700';
+                    const colorMap = {
+                      green: 'text-green-700',
+                      blue: 'text-blue-700',
+                      red: 'text-red-700',
+                      yellow: 'text-yellow-700',
+                      orange: 'text-orange-700',
+                      purple: 'text-purple-700',
+                    };
+                    return colorMap[colorName];
                   };
-                  return colorMap[colorName];
-                };
 
-                return (
-                  <div key={item.key}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span
-                        className={`font-semibold ${getTextColor(item.color, isPrimary)}`}
-                      >
-                        {item.name} {isPrimary && '(Primary)'}
-                      </span>
-                      <span
-                        className={`font-bold ${isPrimary ? getTextColor(item.color, true) : 'text-stone-600'}`}
-                      >
-                        {item.percentage}%
-                      </span>
+                  return (
+                    <div key={item.key}>
+                      <div className="flex justify-between items-center mb-2">
+                        <span
+                          className={`font-semibold ${getTextColor(item.color, isPrimary)}`}
+                        >
+                          {item.name} {isPrimary && '(Primary)'}
+                        </span>
+                        <span
+                          className={`font-bold ${isPrimary ? getTextColor(item.color, true) : 'text-stone-600'}`}
+                        >
+                          {item.percentage}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                        <div
+                          className={`h-3 rounded-full transition-all duration-500 ${getBarColor(item.color, isPrimary)}`}
+                          style={{ width: `${item.percentage}%` }}
+                        />
+                      </div>
                     </div>
-                    <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                      <div
-                        className={`h-3 rounded-full transition-all duration-500 ${getBarColor(item.color, isPrimary)}`}
-                        style={{ width: `${item.percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Explanatory Text */}
+            <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
+              <p className="text-amber-900 text-sm leading-relaxed">
+                {percentages[constitution] < 60 ? (
+                  <>
+                    <strong>Mixed Constitution:</strong> You show
+                    characteristics of multiple types. Your primary tendency is{' '}
+                    <strong>{recommendations.name}</strong>, but you also have
+                    traits from other constitutions. This is common and reflects
+                    the complexity of individual body patterns in TCM.
+                  </>
+                ) : (
+                  <>
+                    <strong>Clear Pattern:</strong> You strongly align with{' '}
+                    <strong>{recommendations.name}</strong>. Focus on the
+                    recommendations below to support your constitution.
+                  </>
+                )}
+              </p>
             </div>
           </div>
 
-          {/* Explanatory Text */}
-          <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
-            <p className="text-amber-900 text-sm leading-relaxed">
-              {percentages[constitution] < 60 ? (
-                <>
-                  <strong>Mixed Constitution:</strong> You show characteristics
-                  of multiple types. Your primary tendency is{' '}
-                  <strong>{recommendations.name}</strong>, but you also have
-                  traits from other constitutions. This is common and reflects
-                  the complexity of individual body patterns in TCM.
-                </>
-              ) : (
-                <>
-                  <strong>Clear Pattern:</strong> You strongly align with{' '}
-                  <strong>{recommendations.name}</strong>. Focus on the
-                  recommendations below to support your constitution.
-                </>
-              )}
-            </p>
+          {/* Right: Share Section */}
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl shadow-lg p-6 flex flex-col justify-center md:col-span-1">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-white mb-3">
+                Share Your Results
+              </h3>
+              <p className="text-emerald-50 mb-6">
+                Help others discover their TCM constitution! Share your results
+                or save them for reference.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={handleCopyLink}
+                  className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
+                >
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Copy Link
+                </button>
+                <button
+                  onClick={handleDownloadImage}
+                  className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
+                >
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Save as Image
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -295,58 +351,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
             {recommendations.principle}
           </p>
         </div>
-        {/* Share Section */}
-        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl shadow-lg p-8 mb-8">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Share Your Results
-            </h3>
-            <p className="text-emerald-50 mb-6">
-              Help others discover their TCM constitution! Share your results or
-              save them for reference.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handleCopyLink}
-                className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  />
-                </svg>
-                Copy Link
-              </button>
-              <button
-                onClick={handleDownloadImage}
-                className="flex items-center justify-center bg-white hover:bg-emerald-50 text-emerald-700 font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm"
-              >
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Save as Image
-              </button>
-            </div>
-          </div>
-        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
