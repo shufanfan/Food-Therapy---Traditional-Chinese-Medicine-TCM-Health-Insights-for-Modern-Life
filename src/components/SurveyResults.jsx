@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getDetailedScore } from '../Sprints/Sprint1/utils/constitutionCalculator';
 import recommendationsData from '../data/recommendations-display.json';
@@ -6,12 +6,52 @@ import recommendationsData from '../data/recommendations-display.json';
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
 
-  // Get detailed scores
-  const detailedScores = getDetailedScore(answers);
+  // NEW: Check if answers come from URL parameter
+  const [actualAnswers, setActualAnswers] = useState(answers);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // If no answers passed as prop, try to get from URL
+    if (!answers || answers.length === 0) {
+      setIsLoading(true);
+      const urlParams = new URLSearchParams(window.location.search);
+      const dataParam = urlParams.get('data');
+
+      if (dataParam) {
+        try {
+          const decodedAnswers = JSON.parse(decodeURIComponent(dataParam));
+          setActualAnswers(decodedAnswers);
+        } catch (error) {
+          console.error('Failed to parse URL data:', error);
+          alert('Invalid results link. Redirecting to home...');
+          navigate('/');
+        }
+      } else {
+        alert('No results data found. Please take the assessment first.');
+        navigate('/');
+      }
+      setIsLoading(false);
+    }
+  }, [answers, navigate]);
+
+  // Show loading state while checking URL
+  if (isLoading || !actualAnswers || actualAnswers.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-stone-50 py-12 px-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+          <p className="text-stone-600">Loading your results...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Get detailed scores using actualAnswers
+  const detailedScores = getDetailedScore(actualAnswers);
   const { scores, result } = detailedScores;
   const constitution = result;
 
-  // Calculate percentages
+  // FIXED: Calculate percentages - include ALL 6 constitution types in total
   const total =
     scores.cold +
     scores.heat +
@@ -20,14 +60,43 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     scores.yinDeficiency +
     scores.phlegmDampness;
 
-  const percentages = {
-    balanced: Math.round((scores.balanced / total) * 100),
-    cold: Math.round((scores.cold / total) * 100),
-    heat: Math.round((scores.heat / total) * 100),
-    qiDeficiency: Math.round((scores.qiDeficiency / total) * 100),
-    yinDeficiency: Math.round((scores.yinDeficiency / total) * 100),
-    phlegmDampness: Math.round((scores.phlegmDampness / total) * 100),
+  const exactPercentages = {
+    balanced: (scores.balanced / total) * 100,
+    cold: (scores.cold / total) * 100,
+    heat: (scores.heat / total) * 100,
+    qiDeficiency: (scores.qiDeficiency / total) * 100,
+    yinDeficiency: (scores.yinDeficiency / total) * 100,
+    phlegmDampness: (scores.phlegmDampness / total) * 100,
   };
+  // Use largest remainder method to ensure sum = 100%
+  const roundedPercentages = {};
+  const keys = Object.keys(exactPercentages);
+  const floors = {};
+  const remainders = {};
+
+  // Step 1: Floor all values and calculate remainders
+  keys.forEach((key) => {
+    floors[key] = Math.floor(exactPercentages[key]);
+    remainders[key] = exactPercentages[key] - floors[key];
+  });
+
+  // Step 2: Calculate how many 1% we need to distribute
+  let sum = Object.values(floors).reduce((a, b) => a + b, 0);
+  let toDistribute = 100 - sum;
+
+  // Step 3: Sort by remainder (largest first) and distribute remaining 1%s
+  const sortedByRemainder = keys.sort((a, b) => remainders[b] - remainders[a]);
+
+  keys.forEach((key) => {
+    if (toDistribute > 0) {
+      roundedPercentages[key] = floors[key] + 1;
+      toDistribute--;
+    } else {
+      roundedPercentages[key] = floors[key];
+    }
+  });
+
+  const percentages = roundedPercentages;
 
   // Create sorted array of constitutions
   const sortedConstitutions = [
@@ -81,16 +150,25 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     navigate('/assessment');
   };
 
+  // UPDATED: Copy link with encoded answers
   const handleCopyLink = () => {
-    const currentUrl = window.location.href;
-    navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        alert('Results link copied to clipboard! Share it with friends.');
-      })
-      .catch(() => {
-        alert('Failed to copy link. Please copy manually: ' + currentUrl);
-      });
+    try {
+      const encodedAnswers = encodeURIComponent(JSON.stringify(actualAnswers));
+      const shareUrl = `${window.location.origin}/results?data=${encodedAnswers}`;
+
+      navigator.clipboard
+        .writeText(shareUrl)
+        .then(() => {
+          alert('Results link copied to clipboard! Share it with friends.');
+        })
+        .catch(() => {
+          // Fallback for browsers that don't support clipboard API
+          alert('Link ready to copy:\n\n' + shareUrl);
+        });
+    } catch (error) {
+      console.error('Failed to generate share link:', error);
+      alert('Failed to generate share link. Please try again.');
+    }
   };
 
   const handleDownloadImage = () => {
