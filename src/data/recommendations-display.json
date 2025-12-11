@@ -59,8 +59,11 @@
       { "name": "White Tea", "benefit": "Subtle and antioxidant-rich" }
     ],
     "foods": {
-      "variety": "Enjoy a diverse range of proteins, vegetables, fruits, and whole grains",
-      "approach": "Seasonal eating and moderation in all things"
+      "proteins": "Variety of proteins: chicken, fish, eggs, legumes, tofu",
+      "vegetables": "Seasonal vegetables, both cooked and raw, emphasizing variety and color",
+      "fruits": "Diverse fruits in moderation, preferably seasonal and local",
+      "grains": "Whole grains: brown rice, quinoa, oats, barley, whole wheat",
+      "other": "Healthy fats (olive oil, avocado), fermented foods (yogurt, kimchi), nuts and seeds in moderation"
     },
     "avoid": [
       "Excessive processed foods",
