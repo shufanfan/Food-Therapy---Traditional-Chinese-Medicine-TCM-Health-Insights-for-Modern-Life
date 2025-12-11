@@ -60,14 +60,43 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     scores.yinDeficiency +
     scores.phlegmDampness;
 
-  const percentages = {
-    balanced: Math.round((scores.balanced / total) * 100),
-    cold: Math.round((scores.cold / total) * 100),
-    heat: Math.round((scores.heat / total) * 100),
-    qiDeficiency: Math.round((scores.qiDeficiency / total) * 100),
-    yinDeficiency: Math.round((scores.yinDeficiency / total) * 100),
-    phlegmDampness: Math.round((scores.phlegmDampness / total) * 100),
+  const exactPercentages = {
+    balanced: (scores.balanced / total) * 100,
+    cold: (scores.cold / total) * 100,
+    heat: (scores.heat / total) * 100,
+    qiDeficiency: (scores.qiDeficiency / total) * 100,
+    yinDeficiency: (scores.yinDeficiency / total) * 100,
+    phlegmDampness: (scores.phlegmDampness / total) * 100,
   };
+  // Use largest remainder method to ensure sum = 100%
+  const roundedPercentages = {};
+  const keys = Object.keys(exactPercentages);
+  const floors = {};
+  const remainders = {};
+
+  // Step 1: Floor all values and calculate remainders
+  keys.forEach((key) => {
+    floors[key] = Math.floor(exactPercentages[key]);
+    remainders[key] = exactPercentages[key] - floors[key];
+  });
+
+  // Step 2: Calculate how many 1% we need to distribute
+  let sum = Object.values(floors).reduce((a, b) => a + b, 0);
+  let toDistribute = 100 - sum;
+
+  // Step 3: Sort by remainder (largest first) and distribute remaining 1%s
+  const sortedByRemainder = keys.sort((a, b) => remainders[b] - remainders[a]);
+
+  keys.forEach((key) => {
+    if (toDistribute > 0) {
+      roundedPercentages[key] = floors[key] + 1;
+      toDistribute--;
+    } else {
+      roundedPercentages[key] = floors[key];
+    }
+  });
+
+  const percentages = roundedPercentages;
 
   // Create sorted array of constitutions
   const sortedConstitutions = [
