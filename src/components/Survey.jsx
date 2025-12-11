@@ -7,20 +7,61 @@ const QUESTIONS = [
     id: 0,
     text: 'How do you typically feel in terms of body temperature?',
     options: [
-      { value: 'A', label: "I'm often cold, even when others are comfortable" },
-      { value: 'B', label: "I'm usually comfortable in most temperatures" },
-      { value: 'C', label: 'I often feel warm or overheated' },
+      {
+        value: 'A',
+        label: (
+          <span>
+            I'm often <strong>cold</strong>, even when others are comfortable
+          </span>
+        ),
+      },
+      {
+        value: 'B',
+        label: (
+          <span>
+            I'm usually <strong>comfortable</strong> in most temperatures
+          </span>
+        ),
+      },
+      {
+        value: 'C',
+        label: (
+          <span>
+            I often feel <strong>warm</strong> or <strong>overheated</strong>
+          </span>
+        ),
+      },
     ],
   },
   {
     id: 1,
     text: 'How would you describe your energy throughout the day?',
     options: [
-      { value: 'A', label: 'I often feel tired or have low energy' },
-      { value: 'B', label: 'I have steady, consistent energy' },
+      {
+        value: 'A',
+        label: (
+          <span>
+            I often feel <strong>tired</strong> or have{' '}
+            <strong>low energy</strong>
+          </span>
+        ),
+      },
+      {
+        value: 'B',
+        label: (
+          <span>
+            I have <strong>steady, consistent energy</strong>
+          </span>
+        ),
+      },
       {
         value: 'C',
-        label: 'I feel restless, anxious, or have fluctuating energy',
+        label: (
+          <span>
+            I feel <strong>restless</strong>, <strong>anxious</strong>, or have{' '}
+            <strong>fluctuating energy</strong>
+          </span>
+        ),
       },
     ],
   },
@@ -30,34 +71,64 @@ const QUESTIONS = [
     options: [
       {
         value: 'A',
-        label:
-          'I experience bloating, loose stools, or feel worse after eating cold foods',
+        label: (
+          <span>
+            I experience <strong>bloating</strong>,{' '}
+            <strong>loose stools</strong>, or feel worse after eating{' '}
+            <strong>cold foods</strong>
+          </span>
+        ),
       },
-      { value: 'B', label: 'My digestion is generally smooth and comfortable' },
+      {
+        value: 'B',
+        label: (
+          <span>
+            My digestion is generally <strong>smooth and comfortable</strong>
+          </span>
+        ),
+      },
       {
         value: 'C',
-        label:
-          'I have oily skin/acne, constipation, or feel heavy and sluggish after meals',
+        label: (
+          <span>
+            I have <strong>oily skin/acne</strong>,{' '}
+            <strong>constipation</strong>, or feel{' '}
+            <strong>heavy and sluggish</strong> after meals
+          </span>
+        ),
       },
     ],
   },
   {
     id: 3,
-    text: 'How do you sleep at night?',
+    text: 'How is your sleep quality at night?',
     options: [
       {
         value: 'A',
-        label:
-          'I sleep okay but wake up tired, or I need many blankets to feel comfortable',
+        label: (
+          <span>
+            I sleep okay but <strong>wake up tired</strong>, or I need{' '}
+            <strong>many blankets</strong> to feel comfortable
+          </span>
+        ),
       },
       {
         value: 'B',
-        label: 'I fall asleep easily and wake up feeling refreshed',
+        label: (
+          <span>
+            I <strong>fall asleep easily</strong> and wake up feeling{' '}
+            <strong>refreshed</strong>
+          </span>
+        ),
       },
       {
         value: 'C',
-        label:
-          'I have trouble falling asleep, experience night sweats, or feel hot at night',
+        label: (
+          <span>
+            I have <strong>trouble falling asleep</strong>, experience{' '}
+            <strong>night sweats</strong>, or feel <strong>hot at night</strong>
+          </span>
+        ),
       },
     ],
   },
@@ -65,14 +136,32 @@ const QUESTIONS = [
     id: 4,
     text: 'What types of foods and drinks do you naturally crave or prefer?',
     options: [
-      { value: 'A', label: 'Warm foods, hot drinks, soups, and cooked meals' },
+      {
+        value: 'A',
+        label: (
+          <span>
+            <strong>Warm foods</strong>, <strong>hot drinks</strong>, soups, and{' '}
+            <strong>cooked meals</strong>
+          </span>
+        ),
+      },
       {
         value: 'B',
-        label: 'A balanced variety - I enjoy both warm and cool foods',
+        label: (
+          <span>
+            A <strong>balanced variety</strong> - I enjoy both warm and cool
+            foods
+          </span>
+        ),
       },
       {
         value: 'C',
-        label: 'Cold drinks, raw foods, salads, and refreshing snacks',
+        label: (
+          <span>
+            <strong>Cold drinks</strong>, <strong>raw foods</strong>, salads,
+            and <strong>refreshing snacks</strong>
+          </span>
+        ),
       },
     ],
   },
@@ -80,15 +169,32 @@ const QUESTIONS = [
     id: 5,
     text: 'Which best describes your experience with moisture or dryness?',
     options: [
-      { value: 'A', label: 'I often have dry mouth, dry skin, or dry throat' },
+      {
+        value: 'A',
+        label: (
+          <span>
+            I often have <strong>dry mouth</strong>, <strong>dry skin</strong>,
+            or <strong>dry throat</strong>
+          </span>
+        ),
+      },
       {
         value: 'B',
-        label:
-          'I feel comfortable; no particular dryness or excessive moisture',
+        label: (
+          <span>
+            I feel comfortable; no particular <strong>dryness</strong> or
+            excessive <strong>moisture</strong>
+          </span>
+        ),
       },
       {
         value: 'C',
-        label: 'I have oily skin, excessive mucus/phlegm, or sticky sensations',
+        label: (
+          <span>
+            I have <strong>oily skin</strong>, excessive{' '}
+            <strong>mucus/phlegm</strong>, or <strong>sticky sensations</strong>
+          </span>
+        ),
       },
     ],
   },
@@ -98,16 +204,29 @@ const QUESTIONS = [
     options: [
       {
         value: 'A',
-        label: 'I tend to be lean or have difficulty gaining weight',
+        label: (
+          <span>
+            I tend to be <strong>lean</strong> or have{' '}
+            <strong>difficulty gaining weight</strong>
+          </span>
+        ),
       },
       {
         value: 'B',
-        label: 'My weight is stable and proportionate to my height',
+        label: (
+          <span>
+            My weight is <strong>stable</strong> and proportionate to my height
+          </span>
+        ),
       },
       {
         value: 'C',
-        label:
-          'I gain weight easily or feel heavy/puffy, especially around abdomen',
+        label: (
+          <span>
+            I <strong>gain weight easily</strong> or feel{' '}
+            <strong>heavy/puffy</strong>, especially around abdomen
+          </span>
+        ),
       },
     ],
   },
@@ -117,16 +236,30 @@ const QUESTIONS = [
     options: [
       {
         value: 'A',
-        label: 'I feel worse in cold weather or need extra layers',
+        label: (
+          <span>
+            I feel worse in <strong>cold weather</strong> or need{' '}
+            <strong>extra layers</strong>
+          </span>
+        ),
       },
       {
         value: 'B',
-        label: "I'm generally comfortable in various weather conditions",
+        label: (
+          <span>
+            I'm generally <strong>comfortable</strong> in various weather
+            conditions
+          </span>
+        ),
       },
       {
         value: 'C',
-        label:
-          'I feel worse in hot or humid weather; I prefer cool, dry environments',
+        label: (
+          <span>
+            I feel worse in <strong>hot</strong> or{' '}
+            <strong>humid weather</strong>; I prefer cool, dry environments
+          </span>
+        ),
       },
     ],
   },
@@ -136,18 +269,30 @@ const QUESTIONS = [
     options: [
       {
         value: 'A',
-        label:
-          "I'm often thirsty and prefer drinking cold water; my mouth feels dry",
+        label: (
+          <span>
+            I'm often <strong>thirsty</strong> and prefer drinking{' '}
+            <strong>cold water</strong>; my mouth feels <strong>dry</strong>
+          </span>
+        ),
       },
       {
         value: 'B',
-        label:
-          "I drink when thirsty but don't think about it much; normal hydration",
+        label: (
+          <span>
+            I drink when thirsty but don't think about it much;{' '}
+            <strong>normal hydration</strong>
+          </span>
+        ),
       },
       {
         value: 'C',
-        label:
-          "I'm rarely thirsty and don't drink much; water may feel heavy in my stomach",
+        label: (
+          <span>
+            I'm <strong>rarely thirsty</strong> and don't drink much; water may
+            feel <strong>heavy in my stomach</strong>
+          </span>
+        ),
       },
     ],
   },
@@ -157,18 +302,30 @@ const QUESTIONS = [
     options: [
       {
         value: 'A',
-        label:
-          'I have good stamina; I recover quickly from exercise or illness',
+        label: (
+          <span>
+            I have <strong>good stamina</strong>; I{' '}
+            <strong>recover quickly</strong> from exercise or illness
+          </span>
+        ),
       },
       {
         value: 'B',
-        label:
-          'I tire easily with physical activity and take a long time to recover',
+        label: (
+          <span>
+            I <strong>tire easily</strong> with physical activity and take a{' '}
+            <strong>long time to recover</strong>
+          </span>
+        ),
       },
       {
         value: 'C',
-        label:
-          'My stamina varies; sometimes good, sometimes I feel drained or get sick easily',
+        label: (
+          <span>
+            My stamina <strong>varies</strong>; sometimes good, sometimes I feel{' '}
+            <strong>drained</strong> or get sick easily
+          </span>
+        ),
       },
     ],
   },
