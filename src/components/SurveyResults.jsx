@@ -6,7 +6,7 @@ import recommendationsData from '../data/recommendations-display.json';
 function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   const navigate = useNavigate();
 
-  // ✅ ALL useState hooks at the top
+  // ALL useState hooks at the top
   const [actualAnswers, setActualAnswers] = useState(answers);
   const [isLoading, setIsLoading] = useState(false);
   const [tracking, setTracking] = useState({
@@ -17,7 +17,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
     lastUpdated: null,
   });
 
-  // ✅ ALL useEffect hooks after useState
+  // ALL useEffect hooks after useState
   // Load answers from URL if needed
   useEffect(() => {
     if (!answers || answers.length === 0) {
@@ -30,7 +30,6 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           const decodedAnswers = JSON.parse(decodeURIComponent(dataParam));
           setActualAnswers(decodedAnswers);
         } catch (error) {
-          console.error('Failed to parse URL data:', error);
           alert('Invalid results link. Redirecting to home...');
           navigate('/');
         }
@@ -54,7 +53,7 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           setTracking(JSON.parse(saved));
         }
       } catch (error) {
-        console.error('Error loading tracking data:', error);
+        // Silent fail - tracking data may be corrupted
       }
     }
   }, [actualAnswers]);
@@ -70,12 +69,12 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           JSON.stringify(tracking)
         );
       } catch (error) {
-        console.error('Error saving tracking data:', error);
+        // Silent fail - could not save tracking data
       }
     }
   }, [tracking, actualAnswers]);
 
-  // ✅ Early return AFTER all hooks
+  // Early return AFTER all hooks
   if (isLoading || !actualAnswers || actualAnswers.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-stone-50 py-12 px-4 flex items-center justify-center">
@@ -124,9 +123,9 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
   let sum = Object.values(floors).reduce((a, b) => a + b, 0);
   let toDistribute = 100 - sum;
 
-  const sortedByRemainder = keys.sort((a, b) => remainders[b] - remainders[a]);
-
-  keys.forEach((key) => {
+  // Sort by remainder (largest first) and distribute remaining 1%s
+  const sortedKeys = keys.sort((a, b) => remainders[b] - remainders[a]);
+  sortedKeys.forEach((key) => {
     if (toDistribute > 0) {
       roundedPercentages[key] = floors[key] + 1;
       toDistribute--;
@@ -202,7 +201,6 @@ function SurveyResults({ answers, onReturnHome, onRestartAssessment }) {
           alert('Link ready to copy:\n\n' + shareUrl);
         });
     } catch (error) {
-      console.error('Failed to generate share link:', error);
       alert('Failed to generate share link. Please try again.');
     }
   };
