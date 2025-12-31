@@ -3,7 +3,7 @@
 
 # Food-Therapy---Traditional-Chinese-Medicine-TCM-Health-Insights-for-Modern-Life
 
-### product url: https://tcmfoodthreapy.netlify.app/
+### product url: https://tcmfoodtherapy.netlify.app/
 <b>Project Overview</b>
 
 This project explores how artificial intelligence can support everyday wellness through personalized and culturally grounded guidance. It combines modern data-driven insights with the Traditional Chinese Medicine (TCM) philosophy of balance, prevention, and the interconnection between body, mind, and environment. The goal is to build a web-based platform that helps people tune into their bodies, understand their unique constitution, and make small, practical adjustments in food, rest, and routine that align with natural rhythms.
